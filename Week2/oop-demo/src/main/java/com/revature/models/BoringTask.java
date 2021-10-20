@@ -13,10 +13,29 @@ public class BoringTask extends Task{
 		super(name, dueDate);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void procrastinate() {
-		
 		this.setDueDate(this.getDueDate().plusDays(1));
+	}
+	
+	public void procrastinate(int days) {
+		this.setDueDate(this.getDueDate().plusDays(days));
+	}
+	
+	public void procrastinate(int days, int times) {
+		this.setDueDate(this.getDueDate().plusDays(days * times));
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "BoringTask [getName()=" + getName() + ", getDueDate()=" + getDueDate() + "]";
+	}
+
+	@Override
+	public BoringTask getATask() {
+		return new BoringTask();
 	}
 
 }

@@ -54,6 +54,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 	public static int getNumberOfUsers() {
 		return numberOfUsers;
@@ -67,6 +69,14 @@ public class User {
 		return numberOfUsers;
 	}
 
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+	
 	public void instanceMethod() {
 		System.out.println("I'm an instance method!");
 	}
@@ -78,16 +88,6 @@ public class User {
 		this.age = age;
 		this.task = task;
 	}
-
-	public Task getTask() {
-		return task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
-	}
-
-
 
 	@Override
 	public String toString() {
