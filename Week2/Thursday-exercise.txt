@@ -1,0 +1,52 @@
+public static void main(String[] args) { //main is used to execute the java application
+	String[] foodTypes = getFoodTypes(); //A string array called foodTypes is instantiated the method getFoodTypes
+	String myType = foodTypes[2];  //A string type called myTape is instantiating the foodTypes array.
+
+	String[] foodsOfMyType = getFoodsByType(myType); //A string array called foodOfMyType is instantiated the method getFoodsByType
+	
+	for (String food : foodsOfMyType) { //advance for loop loops to the food value that it's instantiating foodsOfMyType array.
+		System.out.println(food);   //it prints out whats inside of food
+	}
+}
+
+public static String[] getFoodTypes() {   //String method called getFoodTypes
+	String[] foodTypes = {"breakfast","lunch","dinner","dessert","snack"};  //A string array called foodTypes is created and it contains five values in the array.
+	return foodTypes;  //returns the array foodTypes.
+}
+
+public static String[] getFoodsByType(String type) { //String method that uses String type as a parameter in order for the switch to work
+	String[] foods = new String[3];  //A string array called foods that has three values inside of it
+
+	switch(type) {   //the string value type is used in order to use the switch
+	case "breakfast":  //the value in our string value type is equal to breakfast
+		foods[0] = "pancakes"; //the value in the position 1 [index 0] is equal to pancakes
+		foods[1] = "cereal";   //the value in the position 2 [index 1] is equal to cereal
+		foods[2] = "omelette"; //the value in the position 3 [index 2] is equal to omelette
+		break;                 //it leaves the case once everything is done correctly in the case
+	case "lunch":      //the value in our string value type is equal to lunch
+		foods[0] = "sandwich"; //the value in the position 1 [index 0] is equal to sandwich
+		foods[1] = "salad";    //the value in the position 2 [index 1] is equal to salad
+		foods[2] = "soup";     //the value in the position 3 [index 2] is equal to soup
+		break;                 //it leaves the case once everything is done correctly in the case
+	case "dinner":     //the value in our string value type is equal to dinner
+		foods[0] = "curry";    //the value in the position 1 [index 0] is equal to curry
+		foods[1] = "stir fry"; //the value in the position 2 [index 1] is equal to stir fry
+		foods[2] = "burger";   //the value in the position 3 [index 2] is equal to burger
+		break;                 //it leaves the case once everything is done correctly in the case
+	case "dessert":    //the value in our string value type is equal to dessert
+		foods[0] = "cake";     //the value in the position 1 [index 0] is equal to cake
+		foods[1] = "ice cream";//the value in the position 2 [index 1] is equal to ice cream
+		foods[2] = "candy";    //the value in the position 3 [index 2] is equal to candy
+		break;                 //it leaves the case once everything is done correctly in the case
+	case "snack":      //the value in our string value type is equal to snack
+		foods[0] = "chips";    //the value in the position 1 [index 0] is equal to chips
+		foods[1] = "apple";    //the value in the position 2 [index 1] is equal to apple
+		foods[2] = "samosa";   //the value in the position 3 [index 2] is equal to samosa
+		break;                 //it leaves the case once everything is done correctly in the case
+	default:           //the value in our string value type is different from the other ones
+		// add your own
+		break;                 //it leaves the case once everything is done correctly in the case
+	}
+
+	return foods;      //it returns the array foods
+}
