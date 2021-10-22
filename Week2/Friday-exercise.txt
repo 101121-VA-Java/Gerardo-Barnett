@@ -1,0 +1,24 @@
+public class Food {             //A public class Food was created.
+	public String name;     //A String type name is created.
+	public String type;     //A String type called type is created.
+
+	public Food(String name, String type) {    //A constructor called Food with two parameters(String type name and a String type called type).
+		this.name = name;                  //this.name is instantiating the value of name
+		this.type = type;                  //this.type is instantiating the value of type
+	}
+
+	public void cook() {                       //A public void method called cook.
+		if (!name.contains("cooked")) {    //If statement asking that if the value of name is not cooked, an action will be made.
+			name = "cooked " + name;   //the value of name will be equal to what is stored in name.
+		}
+	}
+}
+
+public class Main {                                             //public class main was created.
+	public static void main(String[] args) {                //The main is used in order to run the Java Application.
+		Food myFood = new Food("potato", "vegetable");  //An instatiation of the constructor Food which we name myFood, in which we add two values, potato and vegetable.
+		myFood.cook();                                  //myFood is calling the method cook
+
+		System.out.println(myFood.name);                //myFood.name is printing out the values that are stored in the method Food, which are cooked potato
+	}
+}

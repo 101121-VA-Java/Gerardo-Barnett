@@ -14,7 +14,17 @@ public class Driver {
 		
 		OOPservice oop = new OOPservice();
 		switch(value) {
-		
+		    case "1": //encapsulation
+		    	oop.doEncapsulation();
+			    break;
+		    case "2": //inheritance
+			    oop.doInheritance();
+			    break;
+		    case "3": //polymorphism
+			    oop.doPolymorphism();
+			    break;
+		    default:
+		    	System.out.println("Option not available.");
 		
 		}
 		val.close();
