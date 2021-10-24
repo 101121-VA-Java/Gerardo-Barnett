@@ -1,10 +1,7 @@
 package com.revature.exceptions;
 
-public class CalculatorException extends ArithmeticException{
+public class AnimalExceptions extends IllegalArgumentException {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-
 }
