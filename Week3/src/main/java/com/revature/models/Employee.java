@@ -2,18 +2,23 @@ package com.revature.models;
 
 public class Employee {
 
+	// id will be assigned by the System
 	private int id;
 	private String name;
 	private String username;
 	private String password;
-	private Role role;
+	private Role role; // using an enum to store a specific value
 	private Employee manager;
-	
-	
 	
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Employee(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
 	}
 
 
@@ -28,87 +33,59 @@ public class Employee {
 		this.manager = manager;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
 	public String getUsername() {
 		return username;
 	}
-
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
 	public Role getRole() {
 		return role;
 	}
-
-
 
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-
-
 	public Employee getManager() {
 		return manager;
 	}
 
-
-
 	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
-
-
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", role="
 				+ role + ", manager=" + manager + "]";
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -122,8 +99,6 @@ public class Employee {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -151,10 +126,7 @@ public class Employee {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
+		if (role != other.role)
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -164,7 +136,4 @@ public class Employee {
 		return true;
 	}
 	
-	
-	
-
 }

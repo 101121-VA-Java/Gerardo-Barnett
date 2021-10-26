@@ -8,6 +8,7 @@ private Customer[] customers;
 	
 	public CustomerArray() {
 		super();
+		customers = new Customer[0];
 	}
 	public CustomerArray(Customer[] customers) {
 		this.customers = customers;

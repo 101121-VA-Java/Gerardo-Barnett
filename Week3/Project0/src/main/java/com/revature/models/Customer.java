@@ -12,11 +12,26 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public Customer(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+
 
 	public Customer(int id, String name, String username, String password) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.username = username;
+		this.password = password;
+	}
+	
+	
+	public Customer(String username, String password) {
+		super();
 		this.username = username;
 		this.password = password;
 	}
@@ -101,6 +116,12 @@ public class Customer {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
 	}
 	
 	
