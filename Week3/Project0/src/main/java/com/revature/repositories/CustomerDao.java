@@ -2,7 +2,7 @@ package com.revature.repositories;
 
 import com.revature.models.Customer;
 
-public interface CustomerDao {
+public interface CustomerDao extends GenericDao<Customer> {
 	Customer[] getAllCustomers(); // returns an array of all of the employees available
 	Customer getCustomerById(int id);
 	int addCustomer(Customer e); // returns assigned id
