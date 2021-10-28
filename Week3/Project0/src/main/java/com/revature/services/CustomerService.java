@@ -1,48 +1,54 @@
 package com.revature.services;
 
-import com.revature.exceptions.UserNotFoundException;
+import java.util.List;
+
+import com.revature.exceptions.LoginException;
+import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
 import com.revature.repositories.CustomerDao;
-import com.revature.repositories.CustomerArray;
+import com.revature.repositories.CustomerList;
 
 
 public class CustomerService {
 	
-private CustomerDao cd;
+	private static CustomerDao cd = new CustomerList();
 
+	public Customer addCustomer(Customer c) throws UsernameAlreadyExistsException {
 
-    public CustomerService() {
-    	super();
-    	cd = new CustomerArray();
-    }
-	
-	public int addCustomer(Customer c) {
-		/*
-		 * add business logic here to manipulate e before storage
-		 */
+		Customer nc = this.getCustomerByUsername(c.getUsername());
+		if (nc != null) {
+			throw new UsernameAlreadyExistsException();
+		}
+
 		return cd.addCustomer(c);
 	}
-	
-	public Customer getCustomerById(int id) throws UserNotFoundException{
 
-		if(id > 0) { // just for example's sake
-		throw new UserNotFoundException();
-		} 
-
+	public Customer getCustomerByUsername(String username) {
+		List<Customer> customers = cd.getAllCustomers();
+		for (Customer c : customers) {
+			if (c.getUsername().equals(username)) {
+				return c;
+			}
+		}
 		return null;
 	}
 	
-	public Customer customerList(String username, String password) {
-		
-		int i = 0;
-		Customer validCustomer = new Customer(username, password);
-		for(Customer all : cd.getAllCustomers()) {
-			if(validCustomer.getUsername().equals(all.getUsername()) && validCustomer.getPassword().equals(all.getPassword())) {
-				return cd.getCustomerById(i);
+	public Customer getCustomerById(int id) {
+		List<Customer> customers = cd.getAllCustomers();
+		for (Customer c : customers) {
+			if (c.getUsername().equals(id)) {
+				return c;
 			}
-			i++;
 		}
 		return null;
+	}
+
+	public Customer login(String username, String password) throws LoginException {
+		Customer c = this.getCustomerByUsername(username);
+		if (c == null || !c.getPassword().equals(password)) {
+			throw new LoginException();
+		}
+		return c;
 	}
 
 }

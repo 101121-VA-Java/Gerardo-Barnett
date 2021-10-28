@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.Scanner;
 
 import com.revature.exceptions.UserNotFoundException;
+import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
 import com.revature.services.CustomerService;
 
@@ -32,10 +33,15 @@ public class CustomerController {
 		
 		
 		
-		Customer newCustomer = new Customer(name, username, password);
+		Customer nc = new Customer(name, username, password);
 		
 		// TODO: check whether a customer created or not (if the method works)
-		cs.addCustomer(newCustomer);
+		try {
+			cs.addCustomer(nc);
+		} catch (UsernameAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("The customer has been registered");
 		

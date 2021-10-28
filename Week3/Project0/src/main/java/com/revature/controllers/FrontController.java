@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class FrontController {
 	private Scanner sc; 
 	private CustomerController cc;
+	private RegisterController rc;
 	
 	public FrontController() {
 		sc = new Scanner(System.in);
 		cc = new CustomerController();
+		rc = new RegisterController();
 	}
 	
 	public void run() {
@@ -24,11 +26,14 @@ public class FrontController {
 			
 			switch(option) {
 			case 1:
+				rc.run(sc);
+				System.out.println();
 				cc.registerCustomer(sc);
 				// TODO: if a customer is not registered, display a different message
 				break;
 			case 2:
-				cc.loginCustomer(sc);
+				//cc.loginCustomer(sc);
+				
 				break;
 			case 3:
 				run = false;
