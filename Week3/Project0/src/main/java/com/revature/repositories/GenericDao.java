@@ -7,9 +7,9 @@ import com.revature.models.Customer;
 public interface GenericDao<C>{
 
 	
-	C getCustomerById(int id);
-	List<C> getAllCustomers();
-	C addCustomer(C c); // returns assigned id
-	boolean editCustomer(C c);  //returns boolean depending on operation success 
-	boolean deleteCustomer(int id);  //returns boolean depending on operation success 
+	C getById(int id);
+	List<C> getAll();
+	int add(C c); // returns assigned id
+	boolean edit(C c);  //returns boolean depending on operation success 
+	boolean delete(int id);  //returns boolean depending on operation success 
 }

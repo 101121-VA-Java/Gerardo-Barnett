@@ -29,19 +29,19 @@ public class CustomerDaoTest {
     	List<Customer> expected = new ArrayList<>();
     	expected.add(new Customer(0, "Gerardo", "GerardoB", "Opeth"));
 
-    	assertEquals(expected, cd.getAllCustomers());
+    	assertEquals(expected, cd.getAll());
     }
 
     @Test
     public void getCustomerByIdExist() {
     	Customer expected = new Customer(0, "Gerardo", "GerardoB", "Opeth");
 
-    	assertEquals(expected, cd.getCustomerById(0));
+    	assertEquals(expected, cd.getById(0));
     }
 
     @Test
     public void getCustomerByIdDoesNotExist() {
-    	assertEquals(null, cd.getCustomerById(10));
+    	assertEquals(null, cd.getById(10));
     }
 
     @Test
@@ -50,8 +50,8 @@ public class CustomerDaoTest {
     	expected.add(new Customer(0, "Gerardo", "GerardoB", "Opeth"));
     	expected.add(new Customer(1, "Nancy", "NancyT", "1D"));
 
-    	cd.addCustomer(new Customer(0, "Nancy", "NancyT", "1D"));
-    	assertEquals(expected, cd.getAllCustomers());
+    	cd.add(new Customer(0, "Nancy", "NancyT", "1D"));
+    	assertEquals(expected, cd.getAll());
     }
 
     @Test
@@ -59,9 +59,9 @@ public class CustomerDaoTest {
     	Customer expected = new Customer(0, "Gerardo", "GerardoB", "Opeth");
     	Customer sus = new Customer(0, "Gerardo", "GerardoB", "Opeth");
 
-    	cd.editCustomer(sus);
+    	cd.edit(sus);
 
-    	assertEquals(expected, cd.getCustomerById(0));
+    	assertEquals(expected, cd.getById(0));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class CustomerDaoTest {
     	;
     	Customer sus = new Customer(10, "Gerardo", "GerardoB", "Opeth");
 
-    	assertFalse(cd.editCustomer(sus));
+    	assertFalse(cd.edit(sus));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CustomerDaoTest {
     	;
     	Customer sus = new Customer(0, "Gerardo", "GerardoB", "Opeth");
 
-    	assertFalse(cd.editCustomer(sus));
+    	assertFalse(cd.edit(sus));
     }
 	
 

@@ -13,18 +13,18 @@ public class CustomerService {
 	
 	private static CustomerDao cd = new CustomerList();
 
-	public Customer addCustomer(Customer c) throws UsernameAlreadyExistsException {
+	public int addCustomer(Customer c) throws UsernameAlreadyExistsException {
 
 		Customer nc = this.getCustomerByUsername(c.getUsername());
 		if (nc != null) {
 			throw new UsernameAlreadyExistsException();
 		}
 
-		return cd.addCustomer(c);
+		return cd.add(c);
 	}
 
 	public Customer getCustomerByUsername(String username) {
-		List<Customer> customers = cd.getAllCustomers();
+		List<Customer> customers = cd.getAll();
 		for (Customer c : customers) {
 			if (c.getUsername().equals(username)) {
 				return c;
@@ -34,7 +34,7 @@ public class CustomerService {
 	}
 	
 	public Customer getCustomerById(int id) {
-		List<Customer> customers = cd.getAllCustomers();
+		List<Customer> customers = cd.getAll();
 		for (Customer c : customers) {
 			if (c.getUsername().equals(id)) {
 				return c;
@@ -49,6 +49,19 @@ public class CustomerService {
 			throw new LoginException();
 		}
 		return c;
+	}
+	
+	public Customer customerList(String username, String password) {
+		int i = 0;
+		Customer validCustomer = new Customer(username, password);
+		for (Customer all : cd.getAll()) {
+			if (validCustomer.getUsername().equals(all.getUsername())
+					&& validCustomer.getPassword().equals(all.getPassword())) {
+				return cd.getById(i);
+			}
+			i++;
+		}
+		return null;
 	}
 
 }

@@ -16,13 +16,13 @@ public class CustomerList implements CustomerDao{
 	}
 	
 	@Override
-	public List<Customer> getAllCustomers() {
+	public List<Customer> getAll() {
 		// TODO Auto-generated method stub
 		return customers;
 	}
 
 	@Override
-	public Customer getCustomerById(int id) {
+	public Customer getById(int id) {
 		// TODO Auto-generated method stub
 		
 		for(Customer c : customers) {
@@ -36,20 +36,19 @@ public class CustomerList implements CustomerDao{
 	}
 
 	@Override
-	public Customer addCustomer(Customer c) {
+	public int add(Customer c) {
 		// TODO Auto-generated method stub
 		
-		c.setId(customers.size());
 		
 		customers.add(c);
 		
-		return c;
+		return c.getId();
 	}
 
 	@Override
-	public boolean editCustomer(Customer c) {
+	public boolean edit(Customer c) {
 		// TODO Auto-generated method stub
-		Customer temp = getCustomerById(c.getId());
+		Customer temp = getById(c.getId());
 		if (temp == null || temp.equals(c)) {
 			return false;
 		}
@@ -59,7 +58,7 @@ public class CustomerList implements CustomerDao{
 	}
 
 	@Override
-	public boolean deleteCustomer(int id) {
+	public boolean delete(int id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
