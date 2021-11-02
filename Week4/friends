@@ -1,0 +1,33 @@
+create table if not exists users(
+
+	id serial primary key,
+	username varchar(20) unique
+
+);
+
+create table friends(
+
+	friend1 integer references users(id),
+	friend2 integer references users(id),
+	primary key(friend1, friend2)
+
+);
+
+insert into users(username) values ('Gerardo');
+insert into users(username) values ('Nancy');
+insert into users(username) values ('Brayden');
+insert into users(username) values ('Hannah');
+insert into users(username) values ('Kevin');
+insert into users(username) values ('Kim');
+
+insert into friends(friend1, friend2) values(1,2);
+
+--update users set username = 'Revature' where id = 6;
+--
+--delete from users where id = 6;
+
+select * from users;
+select id,username from users where id < 3;
+
+--drop table friends;
+--drop table users;
