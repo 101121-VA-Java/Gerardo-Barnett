@@ -1,63 +1,43 @@
 package com.revature.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Videogame;
 
 public class VideogameList implements VideogameDao{
 
-	public List<Videogame> videogames = new ArrayList<Videogame>();
-	
-	
-	
-	
-	public VideogameList() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public VideogameList(List<Videogame> videogames) {
-		
-		super();
-		this.videogames = videogames;
-	}
-
 	@Override
-	public Videogame getById(int id) {
+	public Videogame getVideogameById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Videogame> getAll() {
+	public List<Videogame> getVideogames() {
 		// TODO Auto-generated method stub
-		return this.videogames;
+		return null;
 	}
 
 	@Override
-	public int add(Videogame c) {
+	public int addVideogame(Videogame videogame) {
 		// TODO Auto-generated method stub
-		videogames.add(c);
-		return c.getId();
-		}
+		return 0;
+	}
 
 	@Override
-	public boolean edit(Videogame c) {
+	public boolean updateVideogame(Videogame videogame) {
 		// TODO Auto-generated method stub
-		for (Videogame v : videogames) {
-			if (v.getId() == c.getId() && !v.equals(c)) {
-				videogames.set(c.getId(), c);
-				return true;
-			}
-		}
 		return false;
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public int deleteVideogame(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
+
+	
+
+	
 
 }

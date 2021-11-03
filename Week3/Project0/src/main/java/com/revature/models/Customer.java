@@ -1,93 +1,80 @@
 package com.revature.models;
 
+import java.util.Objects;
+
 public class Customer {
 	private int id;
 	private String name;
 	private String username;
 	private String password;
-	
+	private int creditcard;
 	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public Customer(String name, String username, String password) {
-		super();
-		this.name = name;
-		this.username = username;
-		this.password = password;
-	}
-
-
-	public Customer(int id, String name, String username, String password) {
+	public Customer(int id, String name, String username, String password, int creditcard) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.password = password;
-	}
-	
-	
-	public Customer(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
+		this.creditcard = creditcard;
 	}
 
+	public Customer(String name, String username, String password, int creditcard) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.creditcard = creditcard;
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getUsername() {
 		return username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public int getCreditcard() {
+		return creditcard;
+	}
+
+	public void setCreditcard(int creditcard) {
+		this.creditcard = creditcard;
+	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
+		return Objects.hash(creditcard, id, name, password, username);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -98,33 +85,21 @@ public class Customer {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
+		return creditcard == other.creditcard && id == other.id && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
-
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + "]";
+		return "Customer [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", creditcard=" + creditcard + "]";
 	}
 	
 	
-
+	
+	
+	
+	
+	
 }
 

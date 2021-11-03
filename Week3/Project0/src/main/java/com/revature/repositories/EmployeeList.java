@@ -2,39 +2,38 @@ package com.revature.repositories;
 
 import java.util.List;
 
-import com.revature.models.Customer;
+import com.revature.models.Employee;
 
-public class CustomerList implements CustomerDao{
+public class EmployeeList implements EmployeeDao{
 
 	@Override
-	public Customer getCustomerById(int id) {
+	public Employee getEmployeeById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Customer> getCustomers() {
+	public List<Employee> getEmployees() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int addCustomer(Customer customer) {
+	public int addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public boolean updateCustomer(Customer customer) {
+	public boolean updateEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int deleteCustomer(int id) {
+	public int deleteEmployee(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	
 }

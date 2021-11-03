@@ -10,15 +10,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Customer;
+import com.revature.models.Employee;
 import com.revature.util.ConnectionUtil;
 
-public class CustomerPostgres implements CustomerDao{ 
-	
+public class EmployeePostgres implements EmployeeDao {
+
 	@Override
-	public Customer getCustomerById(int id) {
-		String sql = "select * from customers where c_id = ? ";
-		Customer cus = null;
+	public Employee getEmployeeById(int id) {
+		String sql = "select * from employees where e_id = ? ";
+		Employee emp = null;
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -28,67 +28,68 @@ public class CustomerPostgres implements CustomerDao{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int e_id = rs.getInt("e_id");
+				String name = rs.getString("e_name");
+				String e_username = rs.getString("e_username");
+				String e_password = rs.getString("e_password");
+				String role = rs.getString("e_role");
+				int man_id = rs.getInt("man_e_id");
 				
-				
-				cus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
+				emp = new Employee(e_id, name, e_username, e_password, role, 
+						new Employee(man_id));
 			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		} 
-		return cus;
+		return emp;
 	}
-	
 
-
-	@Override
-	public List<Customer> getCustomers() {
-		String sql = "select * from customers;";
-		List<Customer> customers = new ArrayList<>();
+	public List<Employee> getEmployees() {
+		String sql = "select * from employees;";
+		List<Employee> employees = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int id = rs.getInt("e_id");
+				String name = rs.getString("e_name");
+				String e_username = rs.getString("e_username");
+				String e_password = rs.getString("e_password");
+				String role = rs.getString("e_role");
+				int man_id = rs.getInt("man_e_id");
 				
-				Customer newCus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
-				customers.add(newCus);
+				Employee newEmp = new Employee(id, name, e_username, e_password, role, 
+						new Employee(man_id));
+				employees.add(newEmp);
 			}
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return customers;
+		return employees;
 	}
 
 	@Override
-	public int addCustomer(Customer customer) {
+	public int addEmployee(Employee employee) {
 		int genId = -1;
-		String sql = "insert into customers (c_name, c_username, c_password, c_creditcard) "
-				+ "values (?, ?, ?, ?) returning c_id;";
+		String sql = "insert into employees (e_name, e_username, e_password, e_role, man_e_id) "
+				+ "values (?, ?, ?, ?, ?) returning e_id;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
+			ps.setString(1, employee.getName());
+			ps.setString(2, employee.getUsername());
+			ps.setString(3, employee.getPassword());
+			ps.setString(4, employee.getRole());
+			ps.setInt(5, employee.getManager().getId());
 			
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()) {
-				genId = rs.getInt("c_id");
+				genId = rs.getInt("e_id");
 			}
 			
 		} catch (SQLException | IOException e) {
@@ -100,8 +101,8 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 	@Override
-	public boolean updateCustomer(Customer customer) {
-		String sql = "update customers set c_name = ?, c_username = ?, c_password = ?, c_creditcard = ? "
+	public boolean updateEmployee(Employee employee) {
+		String sql = "update employees set e_name = ?, e_username = ?, e_password = ?, e_role = ?, man_e_id = ? "
 				+ "where e_id = ?;";
 
 		int rowsChanged = -1;
@@ -109,11 +110,12 @@ public class CustomerPostgres implements CustomerDao{
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
-			ps.setInt(6, customer.getId());
+			ps.setString(1, employee.getName());
+			ps.setString(2, employee.getUsername());
+			ps.setString(3, employee.getPassword());
+			ps.setString(4, employee.getRole());
+			ps.setInt(5, employee.getManager().getId());
+			ps.setInt(6, employee.getId());
 
 			rowsChanged = ps.executeUpdate();
 
@@ -130,8 +132,8 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 	@Override
-	public int deleteCustomer(int id) {
-		String sql = "delete from customers where c_id = ?;";
+	public int deleteEmployee(int id) {
+		String sql = "delete from employees where e_id = ?;";
 		int rowsChanged = -1;
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile();) {
@@ -149,3 +151,4 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 }
+

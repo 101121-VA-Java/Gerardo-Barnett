@@ -10,15 +10,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.models.Customer;
+import com.revature.models.Videogame;
 import com.revature.util.ConnectionUtil;
 
-public class CustomerPostgres implements CustomerDao{ 
+public class VideogamePostgres implements VideogameDao{
 	
 	@Override
-	public Customer getCustomerById(int id) {
-		String sql = "select * from customers where c_id = ? ";
-		Customer cus = null;
+	public Videogame getVideogameById(int id) {
+		String sql = "select * from videogames where v_id = ? ";
+		Videogame vg = null;
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -28,67 +28,66 @@ public class CustomerPostgres implements CustomerDao{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int v_id = rs.getInt("v_id");
+				String v_name = rs.getString("v_name");
+				String v_publisher = rs.getString("v_publisher");
+				String v_genre = rs.getString("v_genre");
+				Double v_price = rs.getDouble("v_price");
+				int v_quantity = rs.getInt("v_quantity");
 				
-				
-				cus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
+				vg = new Videogame(v_id, v_name, v_publisher, v_genre, v_price, v_quantity);
 			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		} 
-		return cus;
+		return vg;
 	}
-	
 
-
-	@Override
-	public List<Customer> getCustomers() {
-		String sql = "select * from customers;";
-		List<Customer> customers = new ArrayList<>();
+	public List<Videogame> getVideogames() {
+		String sql = "select * from videogames;";
+		List<Videogame> videogames = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int v_id = rs.getInt("v_id");
+				String v_name = rs.getString("v_name");
+				String v_publisher = rs.getString("v_publisher");
+				String v_genre = rs.getString("v_genre");
+				Double v_price = rs.getDouble("v_price");
+				int v_quantity = rs.getInt("v_quantity");
 				
-				Customer newCus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
-				customers.add(newCus);
+				Videogame newVG = new Videogame(v_id, v_name, v_publisher, v_genre, v_price, v_quantity);
+				videogames.add(newVG);
 			}
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return customers;
+		return videogames;
 	}
 
 	@Override
-	public int addCustomer(Customer customer) {
+	public int addVideogame(Videogame videogame) {
 		int genId = -1;
-		String sql = "insert into customers (c_name, c_username, c_password, c_creditcard) "
-				+ "values (?, ?, ?, ?) returning c_id;";
+		String sql = "insert into videogames (v_name, v_publisher, v_genre, v_price, v-quantity) "
+				+ "values (?, ?, ?, ?, ?) returning v_id;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
+			ps.setString(1, videogame.getName());
+			ps.setString(2, videogame.getPublisher());
+			ps.setString(3, videogame.getGenre());
+			ps.setDouble(4, videogame.getPrice());
+			ps.setInt(5, videogame.getQuantity());
 			
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()) {
-				genId = rs.getInt("c_id");
+				genId = rs.getInt("v_id");
 			}
 			
 		} catch (SQLException | IOException e) {
@@ -100,20 +99,21 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 	@Override
-	public boolean updateCustomer(Customer customer) {
-		String sql = "update customers set c_name = ?, c_username = ?, c_password = ?, c_creditcard = ? "
-				+ "where e_id = ?;";
+	public boolean updateVideogame(Videogame videogame) {
+		String sql = "update Videogames set v_name = ?, v_publisher = ?, v_genre = ?, v_price = ?, v_quantity = ? "
+				+ "where v_id = ?;";
 
 		int rowsChanged = -1;
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
-			ps.setInt(6, customer.getId());
+			ps.setString(1, videogame.getName());
+			ps.setString(2, videogame.getPublisher());
+			ps.setString(3, videogame.getGenre());
+			ps.setDouble(4, videogame.getPrice());
+			ps.setInt(5, videogame.getQuantity());
+			ps.setInt(6, videogame.getId());
 
 			rowsChanged = ps.executeUpdate();
 
@@ -130,8 +130,8 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 	@Override
-	public int deleteCustomer(int id) {
-		String sql = "delete from customers where c_id = ?;";
+	public int deleteVideogame(int id) {
+		String sql = "delete from videogames where v_id = ?;";
 		int rowsChanged = -1;
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile();) {
