@@ -21,7 +21,7 @@ public class JbdcDriver {
 			System.out.println(c);
 		}
 		
-		System.out.println("Get customer by id 4:" + cd.getCustomerById(4));
+		System.out.println("Get customer by id 6:" + cd.getCustomerById(6));
 		
 		Customer newCus = new Customer("Brayden", "BraydenW", "1234", 56781234);
 		

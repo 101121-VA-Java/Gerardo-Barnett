@@ -20,14 +20,14 @@ create table videogames(
 	
 );
 
-insert into customers (c_name, c_username, c_password, c_creditcard) values ('Nancy', 'NancyT', '1D', 12345678);
-insert into customers (c_name, c_username, c_password, c_creditcard) values ('Emmanuel', 'EmmanuelC', 'lucca', 24681357);
-insert into customers (c_name, c_username, c_password, c_creditcard) values ('Nayeli', 'NayeliR', 'tati', 36925813);
-insert into customers (c_name, c_username, c_password, c_creditcard) values ('Omar', 'OmarS', 'flor', 00112233);
-insert into customers (c_name, c_username, c_password, c_creditcard) values ('Braian', 'BraianR', 'dodger', 11335577);
+insert into customers (c_name, c_username, c_password, c_creditcard) values ('Brayden', 'BraydenW', '4567', 12341234);
+insert into customers (c_name, c_username, c_password, c_creditcard) values ('Kim', 'KimK', '8967', 24682468);
+insert into customers (c_name, c_username, c_password, c_creditcard) values ('David', 'DavidW', '2345', 11335577);
+insert into customers (c_name, c_username, c_password, c_creditcard) values ('Dean', 'DeanL', '2468', 22446688);
+insert into customers (c_name, c_username, c_password, c_creditcard) values ('Sam', 'SamK', '1357', 33557799);
 
-insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Super Smash Bros. Ultimate', 'Nintendo', 'Fighter', 59.99, 25);
-insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Sonic Colors Ultimate', 'Sega', 'Platformer', 39.99, 12);
-insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Crash 4', 'Activision', 'Platformer', 59.99, 17);
-insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Final Fantasy VII Remake', 'Square Enix', 'RPG', 59.99, 7);
-insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('The Legend Of Zelda Breath Of The Wild', 'Nintendo', 'Action Adventure', 59.99, 33);
+insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Fire Emblem: Three Houses', 'Nintendo', 'RPG', 59.99, 21);
+insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Mortal Kombat 11', 'NetherRealm Studios', 'Fighter', 39.99, 17);
+insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('The Elder Scrolls V: Skyrim', 'Bethesda', 'RPG', 59.99, 14);
+insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('The Witcher 3 Wild Hunt', 'CD Projekt Red', 'RPG', 59.99, 23);
+insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) values ('Mario Party Superstars', 'Nintendo', 'Party', 59.99, 26);
