@@ -20,6 +20,25 @@ create table videogames(
 	
 );
 
+create table offers(
+	
+	o_id serial primary key,
+	c_id integer references customers(c_id),
+	v_id integer references videogames(v_id),
+	offer money,
+	o_accepted integer,
+	o_payment integer
+	
+
+);
+
+create table payments(
+	p_id serial primary key,
+	v_id integer references videogames(v_id),
+	c_id integer references customers(c_id),
+	paymentMade integer
+);
+
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Brayden', 'BraydenW', '4567', 12341234);
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Kim', 'KimK', '8967', 24682468);
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('David', 'DavidW', '2345', 11335577);

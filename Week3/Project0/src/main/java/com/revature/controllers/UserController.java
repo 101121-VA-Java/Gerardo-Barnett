@@ -2,8 +2,12 @@ package com.revature.controllers;
 
 import java.util.Scanner;
 
+import com.revature.models.Customer;
+import com.revature.services.UserAuth;
+
 public class UserController {
 	
+	Scanner sc = new Scanner(System.in);
 	private Scanner uc; 
 	private CustomerController cc;
 	private RegisterController rc;
@@ -13,6 +17,10 @@ public class UserController {
 		cc = new CustomerController();
 		rc = new RegisterController();
 	}
+	
+	
+	
+	
 	
 	public void userMenu() {
 		boolean run = true;
@@ -42,6 +50,47 @@ public class UserController {
 		}
 		
 		uc.close();
+	}
+	
+	private void registerCustomer(Scanner sc) {
+		boolean run = true;		
+		boolean validData = false;
+		String name = "";
+		String username = "";
+		String password = "";
+		int creditcard = 0;
+		while(run) {		
+		while (!validData) {		
+		System.out.println("Enter your name:");
+		name = sc.nextLine();
+		System.out.println("Enter your username:");
+		username = sc.nextLine();
+		System.out.println("Enter your password:");
+		password = sc.nextLine();
+		System.out.println("Enter your credit card:");
+		creditcard = sc.nextInt();
+		
+		if ((username.length() < 4 && password.length() < 4)) {
+		System.out.println("username & password must have at least 4 characters:");
+		}
+		else {
+			validData = true;
+		}
+		}
+		Customer c = new Customer(name, username, password, creditcard);
+		UserAuth ua = new UserAuth();
+		String returnVal = ua.register(c);
+		if (returnVal == "true") {
+			System.out.println("Customer has been created.");			
+			run = false;
+		}
+		else {
+			validData = false;
+			System.out.println(returnVal);
+		}
+		
+		}
+		
 	}
 	
 	public void cMenu() {

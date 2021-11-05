@@ -5,13 +5,14 @@ import java.util.Scanner;
 import com.revature.exceptions.UserNotFoundException;
 import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
+import com.revature.repositories.CustomerDao;
 import com.revature.services.CustomerService;
-import com.revature.controllers.UserController;
 
 public class CustomerController {
 
 //	private CustomerService cs = new CustomerService();
 //	private UserController um = new UserController();
+////	private CustomerDao cs = new CustomerDao();
 //	
 //	public void searchForCustomer() {
 //		// scanner getting user input
@@ -69,8 +70,8 @@ public class CustomerController {
 //		}
 //		
 //	}
-//	
-//	
+	
+	
 	
 	
 }

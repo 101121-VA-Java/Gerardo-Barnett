@@ -98,6 +98,24 @@ public class CustomerPostgres implements CustomerDao{
 		
 		return genId;
 	}
+	
+	public Customer getUser(String username) throws SQLException, IOException {
+		Customer c = null;
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "select * from customers where username = '" + username + "';" ;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while ( rs.next() ) {
+			
+			
+			c = new Customer(rs.getString("c_name"), rs.getString("c_username"), rs.getString("c_password"), rs.getInt("c_creditcard"));
+			c.setId(rs.getInt("c_id"));
+			return c;
+		}
+
+		return null;
+	}
 
 	@Override
 	public boolean updateCustomer(Customer customer) {

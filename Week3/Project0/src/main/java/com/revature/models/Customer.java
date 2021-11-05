@@ -3,6 +3,7 @@ package com.revature.models;
 import java.util.Objects;
 
 public class Customer {
+	public static Customer currentCustomer;
 	private int id;
 	private String name;
 	private String username;
@@ -29,6 +30,15 @@ public class Customer {
 		this.username = username;
 		this.password = password;
 		this.creditcard = creditcard;
+	}
+	
+	
+
+	public Customer(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
 	}
 
 	public int getId() {
