@@ -21,20 +21,19 @@ public class UserAuth {
 	}
 	
 	public String register(Customer c)  {
-		String created = "Something went wrong.";
+		String created = "Sorry, something went wrong. Please try again.";
 		try {
 			cp.addCustomer(c);
-			return "true";
+			return null;
+		} catch(SQLException e){
+			if(e.getMessage().contains("duplicate key value")) {
+				return "Looks like you already have an account!";
 		}
-
-		catch (SQLException | IOException e) {				
-			if (e.getMessage().contains("duplicate key value")) {
-				return "User already exists";
-				}			
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
-		catch (IOException e) {				
-	    
-		}
+		
+		
 		return created;
 	}
 	

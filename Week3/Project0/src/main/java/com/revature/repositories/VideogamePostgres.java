@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Videogame;
+import com.revature.models.Customer;
+import com.revature.models.Offer;
+import com.revature.models.Payment;
 import com.revature.util.ConnectionUtil;
 
 public class VideogamePostgres implements VideogameDao{
@@ -147,5 +150,142 @@ public class VideogamePostgres implements VideogameDao{
 		}
 		return rowsChanged;
 	}
+
+	@Override
+	public ArrayList<Offer> getPendingOffers() throws IOException, SQLException {
+		// TODO Auto-generated method stub
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "select * from offers where o_accepted = 'false';" ;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		ArrayList<Offer> offersAL = new ArrayList<Offer>();
+		while ( rs.next() ) {		
+			Offer o = new Offer(rs.getInt("o_id"), rs.getInt("c_d"),
+					rs.getInt("v_id"), rs.getDouble("offer"), rs.getBoolean("o_accepted"),
+					rs.getBoolean("o_payment"));
+		
+			offersAL.add(o);			
+		}
+		return offersAL;
+	}
+
+	@Override
+	public void changeOfferStatus(int o_id, boolean approval, int v_id) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "update offers set o_accepted = ? "
+				+ "where o_id = ?;";
+		PreparedStatement ps = conn.prepareStatement(sql);		
+		ps.setBoolean(1, approval);	
+		ps.setInt(2, o_id);
+		ps.executeUpdate();
+		if (approval) {
+			String sql2 = "delete from offers where v_id = ? and o_acccepted = ?";
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ps2.setInt(1, v_id);
+			ps2.setBoolean(2, false);
+			ps2.executeUpdate();
+		}
+	}
+
+	@Override
+	public ArrayList<Payment> viewAllPayments() throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		
+        Connection conn = ConnectionUtil.getConnectionFromFile();		
+		String sql = "select * from offers o join customers c on o.c_id "
+				+ "=c.c_id join videogames v on v.v_id  = o.v_id;" ;		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);		
+		ArrayList<Payment> items = new ArrayList<Payment>();
+		while ( rs.next() ) {	
+			Payment i = new Payment(rs.getInt("p_id"), rs.getInt("v_id"), rs.getInt("c_id"),
+					rs.getInt("o_id"), rs.getBoolean("paymentMade"));			
+			items.add(i);			
+		}
+		
+		return items;
+	}
+
+	@Override
+	public ArrayList<Videogame> viewOwnedItems(int c_id) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+        Connection conn = ConnectionUtil.getConnectionFromFile();
+		
+		String sql = "select distinct v_name, v_publisher, v_genre,"
+				+ "v.v_price ,v.v_quantity, v.v_id from "
+				+ "videogames v join offers o on o.c_id =" + c_id +  "where o.o_accepted = true;" ;
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);		
+		ArrayList<Videogame> items = new ArrayList<Videogame>();
+		while ( rs.next() ) {			
+			Videogame v = new Videogame(rs.getString("v_name"), rs.getString("v_publisher"),
+					rs.getString("v_genre"), rs.getDouble("v_price"), rs.getInt("v_quantity"));
+			v.setId(rs.getInt("itemid"));
+			items.add(v);			
+		}
+		
+		return items;
+	}
+
+	@Override
+	public ArrayList<Videogame> viewUnapprovedItems() throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "SELECT * FROM ITEMS WHERE;" ;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);		
+		ArrayList<Videogame> videogames = new ArrayList<Videogame>();
+		while ( rs.next() ) {			
+			Videogame v = new Videogame(rs.getString("v_name"), rs.getString("v_publisher"), rs.getString("v_genre"), 
+					rs.getDouble("v_price"), rs.getInt("v_quantity") );
+			v.setId(rs.getInt("v_id"));
+			videogames.add(v);			
+		}
+		
+		return videogames;
+	}
+
+	@Override
+	public void makeOffer(Customer c, int v_id, double price) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "insert into offers(c_id, v_id, offer) values"
+				+ "  ( ?, ?, ? );";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1,c.getId() );
+		ps.setInt(2, v_id);
+		ps.setDouble(3, price );
+		ps.executeUpdate();
+		
+	}
+
+	@Override
+	public ArrayList<Payment> viewOwnedPayments(int c_id) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+        Connection conn = ConnectionUtil.getConnectionFromFile();		
+		String sql = "select * from offers o join customers c on o.c_id"
+				+ " =c.c_id join videogames v on v.v_id  = o.v_id where o.o_payment = false;" ;
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);		
+		ArrayList<Payment> items = new ArrayList<Payment>();
+		while ( rs.next() ) {	
+			Payment i = new Payment(rs.getInt("p_id"), rs.getInt("v_id"), rs.getInt("c_id"),
+					rs.getInt("o_id"), false);			
+			items.add(i);			
+		}
+		
+		return items;
+	}
+
+	@Override
+	public boolean rejectAllOffers(int v_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 
 }

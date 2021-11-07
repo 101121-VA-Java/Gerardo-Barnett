@@ -20,23 +20,26 @@ create table videogames(
 	
 );
 
+--drop table offers
 create table offers(
 	
 	o_id serial primary key,
 	c_id integer references customers(c_id),
 	v_id integer references videogames(v_id),
 	offer money,
-	o_accepted integer,
-	o_payment integer
+	o_accepted bool,
+	o_payment bool
 	
 
 );
 
+--drop table payments
 create table payments(
 	p_id serial primary key,
+	o_id integer references offers(o_id),
 	v_id integer references videogames(v_id),
 	c_id integer references customers(c_id),
-	paymentMade integer
+	paymentMade bool
 );
 
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Brayden', 'BraydenW', '4567', 12341234);
