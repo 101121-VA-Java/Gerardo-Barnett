@@ -40,6 +40,14 @@ public class Customer {
 		this.username = username;
 		this.password = password;
 	}
+	
+	
+
+	public Customer(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;

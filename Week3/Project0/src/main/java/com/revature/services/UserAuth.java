@@ -20,18 +20,19 @@ public class UserAuth {
 		cp = new CustomerPostgres();
 	}
 	
-	public String register(Customer c)  {
+	public String register(Customer c) {
 		String created = "Sorry, something went wrong. Please try again.";
-		try {
-			cp.addCustomer(c);
-			return null;
-		} catch(SQLException e){
-			if(e.getMessage().contains("duplicate key value")) {
-				return "Looks like you already have an account!";
-		}
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			cp.addCustomer(c);
+//			return "true";
+//		} 
+//		catch(SQLException e){
+//			if(e.getMessage().contains("duplicate key value")) {
+//				return "Looks like you already have an account!";
+//		}
+//		} catch(IOException e) {
+//		
+//		}
 		
 		
 		return created;

@@ -11,11 +11,13 @@ public class UserController {
 	private Scanner uc; 
 	private CustomerController cc;
 	private RegisterController rc;
+	private UserAuth ua;
 	
 	public UserController() {
 		uc = new Scanner(System.in);
 		cc = new CustomerController();
 		rc = new RegisterController();
+		ua = new UserAuth();
 	}
 	
 	
@@ -26,7 +28,7 @@ public class UserController {
 		boolean run = true;
 		
 		while(run) {
-			System.out.println("Please select an option:");
+			System.out.println("Welcome to Gerardo's Game n Trade store. Please select an option:");
 			System.out.println("1: Customer");
 			System.out.println("2: Employee");
 			System.out.println("3: Exit");
@@ -35,17 +37,19 @@ public class UserController {
 			
 			switch(option) {
 			case 1:
-				
+				cMenu();
 				break;
 			case 2:
-				
+				eMenu();
 				break;
 			case 3:
-					
+				System.out.println("Thank you for stopping by at Gerardo's Game n Trade store. Have a nice day.");	
 				break;		
 			
 			default:
 				System.out.println("Invalid input. Please try again");
+				userMenu();
+				break;
 			}
 		}
 		
@@ -81,7 +85,8 @@ public class UserController {
 		UserAuth ua = new UserAuth();
 		String returnVal = ua.register(c);
 		if (returnVal == "true") {
-			System.out.println("Customer has been created.");			
+			System.out.println("Customer has been created.");
+			customerMenu();
 			run = false;
 		}
 		else {
@@ -92,6 +97,34 @@ public class UserController {
 		}
 		
 	}
+	
+//     private void loginCustomer(Scanner sc) {
+//		
+//		boolean run = true;
+//		String username = "";
+//		String password = "";
+//		while(run) {		
+//			System.out.println("Enter your username:");
+//			username = sc.nextLine();
+//			System.out.println("Enter your password:");
+//			password = sc.nextLine();
+//			UserAuth ua = new UserAuth();
+//			String authResult = ua.logIn(username, password);
+//			if (authResult.equals("logged in")) {
+//				run = false;
+//				System.out.println("Welcome " + Customer.currentCustomer.getName());
+//				customerMenu();
+//				
+//			}
+//			else {
+//				System.out.println(authResult);
+//			}
+//			
+//		}
+//
+//		
+//	}
+	
 	
 	public void cMenu() {
 		boolean run = true;
@@ -106,14 +139,15 @@ public class UserController {
 			
 			switch(option) {
 			case 1:
-				
+				cc.loginCustomer();
 				break;
 			case 2:
-				
+				registerCustomer(sc);
 				break;
             case 3:
-				
-				break;	
+            	System.out.println("Thank you for stopping by at Gerardo's Game n Trade store. Have a nice day.");	
+            	userMenu();
+            	break;
 			
 			default:
 				System.out.println("Invalid input. Please try again");
@@ -142,9 +176,9 @@ public class UserController {
 				
 				break;
             case 3:
-				
+            	System.out.println("Thank you for stopping by at Gerardo's Game n Trade store. Have a nice day.");	
+            	userMenu();
 				break;	
-			
 			default:
 				System.out.println("Invalid input. Please try again");
 			}

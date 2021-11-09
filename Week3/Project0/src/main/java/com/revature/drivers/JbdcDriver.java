@@ -14,28 +14,28 @@ public class JbdcDriver {
 	public static void main(String[] args) {
 	
 		//Customers
-		CustomerDao cd = new CustomerPostgres();
-
-		List<Customer> cus = cd.getCustomers();
-		for (Customer c : cus) {
-			System.out.println(c);
-		}
-		
-		System.out.println("Get customer by id 6:" + cd.getCustomerById(6));
-		
-		Customer newCus = new Customer("Brayden", "BraydenW", "1234", 56781234);
-		
-		
-		int idNewCus = cd.addCustomer(newCus);
-		System.out.println("Generated id was: " + idNewCus);
-		
-		
-		System.out.println("Deleted columns: " + cd.deleteCustomer(idNewCus));
-		
-		
-		Customer newCus2 = new Customer(6, "Hannah", "HannahW", "5678", 67892345);
-
-		System.out.println("Update successfully: " + cd.updateCustomer(newCus2));
+//		CustomerDao cd = new CustomerPostgres();
+//
+//		List<Customer> cus = cd.getCustomers();
+//		for (Customer c : cus) {
+//			System.out.println(c);
+//		}
+//		
+//		System.out.println("Get customer by id 6:" + cd.getCustomerById(6));
+//		
+//		Customer newCus = new Customer("Brayden", "BraydenW", "1234", 56781234);
+//		
+//		
+//		int idNewCus = cd.addCustomer(newCus);
+//		System.out.println("Generated id was: " + idNewCus);
+//		
+//		
+//		System.out.println("Deleted columns: " + cd.deleteCustomer(idNewCus));
+//		
+//		
+//		Customer newCus2 = new Customer(6, "Hannah", "HannahW", "5678", 67892345);
+//
+//		System.out.println("Update successfully: " + cd.updateCustomer(newCus2));
 		
 		
 		
