@@ -24,11 +24,11 @@ public class VideogameList implements VideogameDao{
 		return null;
 	}
 
-	@Override
-	public int addVideogame(Videogame videogame) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public int addVideogame(Videogame videogame) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 	@Override
 	public boolean updateVideogame(Videogame videogame) {
@@ -36,11 +36,11 @@ public class VideogameList implements VideogameDao{
 		return false;
 	}
 
-	@Override
-	public int deleteVideogame(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public int deleteVideogame(int id) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 	@Override
 	public ArrayList<Offer> getPendingOffers() throws IOException, SQLException {
@@ -88,6 +88,30 @@ public class VideogameList implements VideogameDao{
 	public boolean rejectAllOffers(int v_id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void addVideogame(Videogame videogame) throws IOException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteVideogame(int v_id) throws IOException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Videogame> viewItems() throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Offer> getWeeklyPayments() throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

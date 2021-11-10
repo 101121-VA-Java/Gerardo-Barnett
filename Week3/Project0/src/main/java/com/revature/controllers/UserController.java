@@ -28,6 +28,9 @@ public class UserController {
 	private VideogamePostgres vp;
 	private UserAuth ua;
 	private static EmployeePostgres ep;
+	private CustomerDao cd;
+	private EmployeeDao ed;
+	private VideogameDao vd;
 	
 	public UserController() {
 		uc = new Scanner(System.in);
@@ -36,6 +39,9 @@ public class UserController {
 		ua = new UserAuth();
 		vp = new VideogamePostgres();
 		ep = new EmployeePostgres();
+		cd = new CustomerPostgres();
+	
+		
 	}
 	
 	
@@ -325,7 +331,6 @@ public class UserController {
   				run = false;
   				System.out.println("Welcome " + Manager.currentManager.getName());
   				
-  				
   			}
   			else {
   				System.out.println(authResult);
@@ -495,13 +500,32 @@ public class UserController {
 			
 			switch(option) {
 			case 1:
-				addVideogame(sc);
+				
+				System.out.println("Videogame name:");
+				String name = sc.nextLine();
+				System.out.println("Videogame publisher:");
+				String publisher = sc.nextLine();
+				System.out.println("Videogame genre:");
+				String genre = sc.nextLine();
+				System.out.println("retail price:");
+				Double price = sc.nextDouble();
+				System.out.println("Videogame quantity:");
+				int quantity = sc.nextInt();
+				Videogame newVG = new Videogame(name, publisher, genre, price, quantity);
+				
+		        vp.addVideogame(newVG);
+		        System.out.println("Videogame added to shop.");
 				break;
 			case 2:
 				approveOffers(sc);
 				break;
 			case 3:
-				deleteVideogame(sc);
+				System.out.println("Please type the id of the videogame you want to delete.");
+				int idV = sc.nextInt();
+				System.out.println("Videogame id was: " + idV);
+			
+				vp.deleteVideogame(idV);
+     		
 				break;
 			case 4:
 				viewPayments(sc);
@@ -538,7 +562,12 @@ public class UserController {
 				registerEmployee2(sc);
 				break;
 			case 2:
-				
+				System.out.println("Please type the id of the employee you want to delete.");
+				int idE = sc.nextInt();
+				System.out.println("Generated id was: " + idE);
+			
+			
+     			System.out.println("Deleted columns: " + ep.deleteEmployee(idE));
 				
 				break;
 			case 3:
@@ -683,7 +712,7 @@ public class UserController {
 		
 	}
 
-	//TODO : Solve foreign key constraint
+	
 	private void deleteVideogame(Scanner sc) {		
 		
 		VideogameService li = new VideogameService();

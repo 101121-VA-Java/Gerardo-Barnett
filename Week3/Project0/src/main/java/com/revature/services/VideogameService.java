@@ -25,18 +25,18 @@ public class VideogameService {
 	
 	public boolean addVideogame(Videogame v) {
 		
-		try {
-			id.addVideogame(v);
-		} catch (SQLException e) {
-			log.fatal("An error ocurred while trying to add a videogame.");
-			e.printStackTrace();
-			return false;
-		}
-		catch (IOException e) {
-			log.fatal("An error ocurred while trying to add videogame.");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			id.addVideogame(v);
+//		} catch (SQLException e) {
+//			log.fatal("An error ocurred while trying to add a videogame.");
+//			e.printStackTrace();
+//			return false;
+//		}
+//		catch (IOException e) {
+//			log.fatal("An error ocurred while trying to add videogame.");
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return true;		
 	}
 	public ArrayList<Videogame> getItems() {
