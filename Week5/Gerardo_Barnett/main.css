@@ -1,0 +1,25 @@
+html{
+    background-color: aqua;
+    padding: 1.5em;
+}
+
+body{
+    background-color: blue;
+    padding: 1em;
+    width: 5em;
+    border: 2px solid black;
+}
+
+header{
+    background-color: honeydew;
+}
+
+nav{
+    background-color: cornflowerblue;
+
+}
+
+footer{
+    background-color: firebrick;
+
+}
