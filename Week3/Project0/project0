@@ -33,6 +33,15 @@ create table offers(
 
 );
 
+create table managers(
+	
+	m_id serial primary key,
+	m_name varchar(50),
+	m_username varchar(50),
+	m_password varchar(50)
+	
+);
+
 --drop table payments
 create table payments(
 	p_id serial primary key,
@@ -41,6 +50,8 @@ create table payments(
 	c_id integer references customers(c_id),
 	paymentMade bool
 );
+
+insert into managers(m_name, m_username, m_password) values('Gerardo Barnett', 'werehog2006', 'opeth');
 
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Brayden', 'BraydenW', '4567', 12341234);
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Kim', 'KimK', '8967', 24682468);

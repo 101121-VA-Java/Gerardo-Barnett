@@ -64,28 +64,28 @@ public class JbdcDriver {
 //		System.out.println("Update successfully: " + ed.updateEmployee(newEmp2));
 		
 		//Videogames
-		VideogameDao vd = new VideogamePostgres();
-
-		List<Videogame> vg = vd.getVideogames();
-		for (Videogame v : vg) {
-			System.out.println(v);
-		}
-				
-		System.out.println("Get videogame by id 4:" + vd.getVideogameById(4));
-				
-		Videogame newVG = new Videogame("Super Mario Odyssey", "Nintendo", "Platformer", 59.99, 24);
-				
-				
-		int idNewVG = vd.addVideogame(newVG);
-		System.out.println("Generated id was: " + idNewVG);
-				
-				
-		System.out.println("Deleted columns: " + vd.deleteVideogame(idNewVG));
-				
-				
-		Videogame newVG2 = new Videogame(6, "Luigi's Mansion 3", "Nintendo", "Platformer", 59.99, 21);
-
-		System.out.println("Update successfully: " +vd.updateVideogame(newVG2));
+//		VideogameDao vd = new VideogamePostgres();
+//
+//		List<Videogame> vg = vd.getVideogames();
+//		for (Videogame v : vg) {
+//			System.out.println(v);
+//		}
+//				
+//		System.out.println("Get videogame by id 4:" + vd.getVideogameById(4));
+//				
+//		Videogame newVG = new Videogame("Super Mario Odyssey", "Nintendo", "Platformer", 59.99, 24);
+//				
+//				
+//		int idNewVG = vd.addVideogame(newVG);
+//		System.out.println("Generated id was: " + idNewVG);
+//				
+//				
+//		System.out.println("Deleted columns: " + vd.deleteVideogame(idNewVG));
+//				
+//				
+//		Videogame newVG2 = new Videogame(6, "Luigi's Mansion 3", "Nintendo", "Platformer", 59.99, 21);
+//
+//		System.out.println("Update successfully: " +vd.updateVideogame(newVG2));
 	}
 
 }

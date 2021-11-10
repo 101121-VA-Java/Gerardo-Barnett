@@ -1,7 +1,7 @@
 package com.revature.models;
 
 public class Employee {
-	
+	public static Employee currentEmployee;
 	private int id;
 	private String name;
 	private String username;
@@ -33,6 +33,15 @@ public class Employee {
 		this.password = password;
 		this.role = role;
 		this.manager = manager;
+	}
+	
+	
+	
+	public Employee(String name, String username, String password) {
+		super();
+		this.name = name;
+		this.username = username;
+		this.password = password;
 	}
 	public int getId() {
 		return id;

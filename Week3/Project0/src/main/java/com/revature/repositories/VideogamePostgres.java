@@ -73,9 +73,9 @@ public class VideogamePostgres implements VideogameDao{
 	}
 
 	@Override
-	public int addVideogame(Videogame videogame) {
+	public void addVideogame(Videogame videogame) {
 		int genId = -1;
-		String sql = "insert into videogames (v_name, v_publisher, v_genre, v_price, v-quantity) "
+		String sql = "insert into videogames (v_name, v_publisher, v_genre, v_price, v_quantity) "
 				+ "values (?, ?, ?, ?, ?) returning v_id;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
@@ -98,7 +98,7 @@ public class VideogamePostgres implements VideogameDao{
 			e.printStackTrace();
 		}
 		
-		return genId;
+//		return genId;
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class VideogamePostgres implements VideogameDao{
 	}
 
 	@Override
-	public int deleteVideogame(int id) {
+	public void deleteVideogame(int id) {
 		String sql = "delete from videogames where v_id = ?;";
 		int rowsChanged = -1;
 
@@ -148,7 +148,7 @@ public class VideogamePostgres implements VideogameDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rowsChanged;
+//		return rowsChanged;
 	}
 
 	@Override
@@ -279,11 +279,35 @@ public class VideogamePostgres implements VideogameDao{
 		
 		return items;
 	}
+	
+	@Override
+	public ArrayList<Offer> getWeeklyPayments() throws SQLException, IOException {
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "SELECT * FROM USER_OFFERS where payment_made = 'true'"
+				+ " and date_created > DATE(NOW()) - INTERVAL '7' DAY ;" ;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		ArrayList<Offer> offersAL = new ArrayList<Offer>();
+		while ( rs.next() ) {		
+			Offer o = new Offer(rs.getInt("o_id"), rs.getInt("c_id"),
+					rs.getInt("v_id"), rs.getDouble("offer"), rs.getBoolean("o_accepted"),
+					rs.getBoolean("o_payment"));
+			
+			offersAL.add(o);			
+		}
+		return offersAL;
+	}
 
 	@Override
 	public boolean rejectAllOffers(int v_id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public ArrayList<Videogame> viewItems() throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

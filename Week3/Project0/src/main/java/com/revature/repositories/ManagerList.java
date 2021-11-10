@@ -4,44 +4,42 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.models.Employee;
+import com.revature.models.Manager;
 
-public class EmployeeList implements EmployeeDao{
+public class ManagerList implements ManagerDao{
 
 	@Override
-	public Employee getEmployeeById(int id) {
+	public Manager getManagerById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Employee> getEmployees() {
+	public List<Manager> getManager() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
-
 	@Override
-	public boolean updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addEmployee(Employee e) throws SQLException, IOException {
+	public void addManager(Manager manager) throws SQLException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Employee getUser(String username) throws SQLException, IOException {
+	public boolean updateManager(Manager manager) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int deleteManager(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Manager getUser(String username) throws SQLException, IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -12,14 +12,15 @@ import java.util.List;
 
 import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.models.Customer;
+import com.revature.models.Manager;
 import com.revature.util.ConnectionUtil;
 
-public class CustomerPostgres implements CustomerDao{ 
+public class ManagerPostgres implements ManagerDao{
 	
 	@Override
-	public Customer getCustomerById(int id) {
-		String sql = "select * from customers where c_id = ? ";
-		Customer cus = null;
+	public Manager getManagerById(int id) {
+		String sql = "select * from managers where m_id = ? ";
+		Manager ms = null;
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -29,67 +30,67 @@ public class CustomerPostgres implements CustomerDao{
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int m_id = rs.getInt("m_id");
+				String m_name = rs.getString("m_name");
+				String m_username = rs.getString("m_username");
+				String m_password = rs.getString("m_password");
 				
 				
-				cus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
+				
+				ms = new Manager(m_id, m_name, m_username, m_password);
 			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		} 
-		return cus;
+		return ms;
 	}
 	
 
 
 	@Override
-	public List<Customer> getCustomers() {
-		String sql = "select * from customers;";
-		List<Customer> customers = new ArrayList<>();
+	public List<Manager> getManager() {
+		String sql = "select * from managers;";
+		List<Manager> managers = new ArrayList<>();
 		
 		try (Connection con = ConnectionUtil.getConnectionFromFile()){
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				int c_id = rs.getInt("c_id");
-				String c_name = rs.getString("c_name");
-				String c_username = rs.getString("c_username");
-				String c_password = rs.getString("c_password");
-				int c_creditcard = rs.getInt("c_creditcard");
+				int m_id = rs.getInt("m_id");
+				String m_name = rs.getString("m_name");
+				String m_username = rs.getString("m_username");
+				String m_password = rs.getString("m_password");
 				
-				Customer newCus = new Customer(c_id, c_name, c_username, c_password, c_creditcard);
-				customers.add(newCus);
+				
+				Manager newCus = new Manager(m_id, m_name, m_username, m_password);
+				managers.add(newCus);
 			}
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return customers;
+		return managers;
 	}
 
 	@Override
-	public void addCustomer(Customer customer) throws SQLException, IOException { //throws SQLException, IOException
+	public void addManager(Manager manager) throws SQLException, IOException { //throws SQLException, IOException
 		int genId = -1;
-		String sql = "insert into customers (c_name, c_username, c_password, c_creditcard) "
-				+ "values (?, ?, ?, ?) returning c_id;";
+		String sql = "insert into managers (m_name, m_username, m_password) "
+				+ "values (?, ?, ?) returning m_id;";
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
+			ps.setString(1, manager.getName());
+			ps.setString(2, manager.getUsername());
+			ps.setString(3, manager.getPassword());
+			
 			
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()) {
-				genId = rs.getInt("c_id");
+				genId = rs.getInt("m_id");
 			}
 			
 			
@@ -101,39 +102,39 @@ public class CustomerPostgres implements CustomerDao{
 //		return genId;
 	}
 	
-	public Customer getUser(String username) throws SQLException, IOException {
-		Customer c = null;
+	public Manager getUser(String username) throws SQLException, IOException {
+		Manager m = null;
 		Connection conn = ConnectionUtil.getConnectionFromFile();
-		String sql = "select * from customers where c_username = '" + username + "';" ;
+		String sql = "select * from managers where m_username = '" + username + "';" ;
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while ( rs.next() ) {
 			
 			
-			c = new Customer(rs.getString("c_name"), rs.getString("c_username"), rs.getString("c_password"), rs.getInt("c_creditcard"));
-			c.setId(rs.getInt("c_id"));
-			return c;
+			m = new Manager(rs.getString("m_name"), rs.getString("m_username"), rs.getString("m_password"));
+			m.setId(rs.getInt("m_id"));
+			return m;
 		}
 
 		return null;
 	}
 
 	@Override
-	public boolean updateCustomer(Customer customer) {
-		String sql = "update customers set c_name = ?, c_username = ?, c_password = ?, c_creditcard = ? "
-				+ "where e_id = ?;";
+	public boolean updateManager(Manager manager) {
+		String sql = "update managers set m_name = ?, m_username = ?, m_password = ? "
+				+ "where m_id = ?;";
 
 		int rowsChanged = -1;
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, customer.getName());
-			ps.setString(2, customer.getUsername());
-			ps.setString(3, customer.getPassword());
-			ps.setInt(4, customer.getCreditcard());
-			ps.setInt(6, customer.getId());
+			ps.setString(1, manager.getName());
+			ps.setString(2, manager.getUsername());
+			ps.setString(3, manager.getPassword());
+	
+			ps.setInt(4, manager.getId());
 
 			rowsChanged = ps.executeUpdate();
 
@@ -150,8 +151,8 @@ public class CustomerPostgres implements CustomerDao{
 	}
 
 	@Override
-	public int deleteCustomer(int id) {
-		String sql = "delete from customers where c_id = ?;";
+	public int deleteManager(int id) {
+		String sql = "delete from managers where m_id = ?;";
 		int rowsChanged = -1;
 
 		try (Connection con = ConnectionUtil.getConnectionFromFile();) {

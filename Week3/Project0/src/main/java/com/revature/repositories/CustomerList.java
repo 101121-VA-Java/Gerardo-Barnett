@@ -1,5 +1,7 @@
 package com.revature.repositories;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.models.Customer;
@@ -19,9 +21,9 @@ public class CustomerList implements CustomerDao{
 	}
 
 	@Override
-	public int addCustomer(Customer customer) {
+	public void addCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		return 0;
+//		return 0;
 	}
 
 	@Override
@@ -34,6 +36,12 @@ public class CustomerList implements CustomerDao{
 	public int deleteCustomer(int id) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Customer getUser(String username) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Customer;
 import com.revature.models.Employee;
 import com.revature.util.ConnectionUtil;
 
@@ -72,7 +73,7 @@ public class EmployeePostgres implements EmployeeDao {
 	}
 
 	@Override
-	public int addEmployee(Employee employee) {
+	public void addEmployee(Employee employee) throws SQLException, IOException{
 		int genId = -1;
 		String sql = "insert into employees (e_name, e_username, e_password, e_role, man_e_id) "
 				+ "values (?, ?, ?, ?, ?) returning e_id;";
@@ -97,7 +98,7 @@ public class EmployeePostgres implements EmployeeDao {
 			e.printStackTrace();
 		}
 		
-		return genId;
+//		return genId;
 	}
 
 	@Override
@@ -149,6 +150,28 @@ public class EmployeePostgres implements EmployeeDao {
 		}
 		return rowsChanged;
 	}
+
+	@Override
+	public Employee getUser(String username) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		Employee e = null;
+		Connection conn = ConnectionUtil.getConnectionFromFile();
+		String sql = "select * from employees where e_username = '" + username + "';" ;
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while ( rs.next() ) {
+			
+			
+			e = new Employee(rs.getString("e_name"), rs.getString("e_username"), rs.getString("e_password"));
+			e.setId(rs.getInt("e_id"));
+			return e;
+		}
+
+		return null;
+	}
+
+	
 
 }
 

@@ -13,15 +13,15 @@ public class CustomerService {
 	
 	private static CustomerDao cd = new CustomerList();
 
-	public int addCustomer(Customer c) throws UsernameAlreadyExistsException {
-
-		Customer nc = this.getCustomerByUsername(c.getUsername());
-		if (nc != null) {
-			throw new UsernameAlreadyExistsException();
-		}
-
-		return cd.addCustomer(c);
-	}
+//	public int addCustomer(Customer c) throws UsernameAlreadyExistsException {
+//
+//		Customer nc = this.getCustomerByUsername(c.getUsername());
+//		if (nc != null) {
+//			throw new UsernameAlreadyExistsException();
+//		}
+//
+//		return cd.addCustomer(c);
+//	}
 
 	public Customer getCustomerByUsername(String username) {
 		List<Customer> customers = cd.getCustomers();

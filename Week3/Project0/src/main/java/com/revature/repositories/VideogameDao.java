@@ -14,9 +14,10 @@ public interface VideogameDao{
 	
 	Videogame getVideogameById(int id);
 	List<Videogame> getVideogames();
-	int addVideogame(Videogame videogame);
+	void addVideogame(Videogame videogame) throws IOException, SQLException;
 	boolean updateVideogame(Videogame videogame);
-	int deleteVideogame(int id);
+	void deleteVideogame(int v_id) throws IOException, SQLException;
+	ArrayList<Videogame> viewItems() throws SQLException, IOException;
 	
 	//Employee
 	
@@ -29,7 +30,9 @@ public interface VideogameDao{
 	ArrayList<Videogame> viewUnapprovedItems() throws SQLException, IOException;
 	void makeOffer(Customer c, int v_id, double price) throws SQLException, IOException;
 	ArrayList<Payment> viewOwnedPayments(int c_id) throws SQLException, IOException;
+	ArrayList<Offer> getWeeklyPayments() throws SQLException, IOException;
 	
 	//System
 	boolean rejectAllOffers(int v_id);
+	
 }
