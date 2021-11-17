@@ -7,7 +7,7 @@ public class Reimbursement {
 	private double reimAmount;
 	private Timestamp submit;
 	private Timestamp resolve;
-	private String descrip;
+	private String description;
 //	private blob picture
 	private User author;
 	private User resolver;
@@ -19,14 +19,14 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int reimId, double reimAmount, Timestamp submit, Timestamp resolve, String descrip,
+	public Reimbursement(int reimId, double reimAmount, Timestamp submit, Timestamp resolve, String description,
 			User author, User resolver, Status status, Type type) {
 		super();
 		this.reimId = reimId;
 		this.reimAmount = reimAmount;
 		this.submit = submit;
 		this.resolve = resolve;
-		this.descrip = descrip;
+		this.description = description;
 		this.author = author;
 		this.resolver = resolver;
 		this.status = status;
@@ -65,12 +65,12 @@ public class Reimbursement {
 		this.resolve = resolve;
 	}
 
-	public String getDescrip() {
-		return descrip;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescrip(String descrip) {
-		this.descrip = descrip;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public User getAuthor() {
@@ -108,9 +108,11 @@ public class Reimbursement {
 	@Override
 	public String toString() {
 		return "Reimbursement [reimId=" + reimId + ", reimAmount=" + reimAmount + ", submit=" + submit + ", resolve="
-				+ resolve + ", descrip=" + descrip + ", author=" + author + ", resolver=" + resolver + ", status="
-				+ status + ", type=" + type + "]";
+				+ resolve + ", description=" + description + ", author=" + author + ", resolver=" + resolver
+				+ ", status=" + status + ", type=" + type + "]";
 	}
+
+	
 	
 	
 
