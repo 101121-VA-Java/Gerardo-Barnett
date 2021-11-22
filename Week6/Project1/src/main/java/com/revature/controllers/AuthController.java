@@ -17,7 +17,7 @@ private static AuthService as = new AuthService();
 		String token = null;
 		
 		if(username != null && password != null) {
-			token = as.login(username, password);
+			token = as.loginSystem(username, password);
 		}
 		
 		if(token != null) {

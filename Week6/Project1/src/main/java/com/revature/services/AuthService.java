@@ -2,15 +2,16 @@ package com.revature.services;
 
 import java.util.Arrays;
 
-
-import com.revature.models.User;
 import com.revature.models.Role;
+import com.revature.models.User;
+import com.revature.repositories.DaoFactory;
+import com.revature.repositories.UsersDao;
 
 public class AuthService {
 	
 private UsersDao ud;
 	
-	public AuthServices() {
+	public AuthService() {
 		ud = DaoFactory.getDaoFactory().getUsersDao();
 	}
 	
@@ -22,7 +23,7 @@ private UsersDao ud;
 		User principal = ud.getUserByUsername(username);
 		
 		if(principal != null && principal.getPassword().equals(password)) {
-			token = principal.getUserId() + ":" + principal.getRole();
+			token = principal.getId() + ":" + principal.getRole();
 		}
 		
 		return token;

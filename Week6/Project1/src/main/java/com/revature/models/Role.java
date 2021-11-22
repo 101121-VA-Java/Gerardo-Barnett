@@ -35,6 +35,11 @@ public class Role {
 	public String toString() {
 		return "Role [roleId=" + roleId + ", role=" + role + "]";
 	}
+
+	public static Role valueOf(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
