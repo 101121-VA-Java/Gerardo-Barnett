@@ -40,10 +40,10 @@ public class ManagerPostgres implements ManagerDao{
 	public User viewAllEmployees() throws IOException, SQLException {
 		User u = null;
 		Connection con = ConnectionUtil.getConnectionFromFile();
-		String sql = "select * from users u join userrole r on u.uname = r.uname "
-				+ "where u.uname = ? ;" ;
+		String sql = "select * from ers_users u join ers_user_roles r on u.ers_username = r.uname "
+				+ "where u.ers_username = ? ;" ;
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, uname);
+		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
 		
 		while ( rs.next() ) {
