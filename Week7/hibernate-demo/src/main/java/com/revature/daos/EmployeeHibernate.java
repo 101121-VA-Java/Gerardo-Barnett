@@ -75,7 +75,9 @@ public class EmployeeHibernate implements EmployeeDao{
 			String hql = "from Employee where id = :e_id";
 			TypedQuery<Employee> tq = s.createQuery(hql, Employee.class);
 			tq.setParameter("e_id", id);
-			e = tq.getSingleResult();
+			try {e = tq.getSingleResult(); }
+			catch (Exception err) { 				
+			}
 		}
 		return e;
 	}
