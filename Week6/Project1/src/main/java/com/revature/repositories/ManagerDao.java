@@ -2,16 +2,17 @@ package com.revature.repositories;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
 
 public interface ManagerDao {
 	
-	Reimbursement viewAllPending();
+	ArrayList<Reimbursement> viewAllPending();
 	boolean updateRequest(Reimbursement re);
-	Reimbursement viewAllResolved();
+	ArrayList<Reimbursement> viewAllResolved();
 	Reimbursement viewSpecificRequest();
-	User viewAllEmployees() throws IOException, SQLException;
+	ArrayList<User> viewAllEmployees() throws IOException, SQLException;
 
 }

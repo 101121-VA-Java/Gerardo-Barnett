@@ -73,15 +73,38 @@ public class UserPostgres implements UsersDao{
 	}
 
 	@Override
-	public User viewMyInfo(User u) {
-		// TODO Auto-generated method stub
-		return null;
+	public User viewMyInfo(String username) {
+		User u = null;
+		try {
+			Connection con = ConnectionUtil.getConnectionFromFile();
+			String sql = "select * from users where uname = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				u = new User(
+						rs.getInt("ers_users_id"),
+						rs.getString("ers_username"),
+						rs.getString("ers_password"),
+						rs.getString("ers_first_name"),
+						rs.getString("ers_last_name"),
+						rs.getString("ers_email"), 
+						null
+						);
+			}
+			
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return u;
 	}
 
 	@Override
-	public User updateMyInfo(User u) {
+	public boolean updateMyInfo(User u) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 

@@ -1,20 +1,32 @@
 package com.revature.services;
 
 import com.revature.models.User;
+import com.revature.repositories.UserPostgres;
+import com.revature.repositories.UsersDao;
 
 public class UserService {
 	
+	UserPostgres up = new UserPostgres();
+	private UsersDao ud;
+	
 	User getUserByUsername(String username) {
-		return null;
+		User u = null;
+		u = ud.getUserByUsername(username);
+		return u;
 	}
 	User getUserById(int userId) {
-		return null;
+		User u = null;
+		u = ud.getUserById(userId);
+		return u;
 	}
-	User viewMyInfo(User u) {
-		return null;
+	User viewMyInfo(String username) {
+		return up.getUserByUsername(username);
 	}
-	User updateMyInfo(User u) {
-		return null;
+	public boolean updateMyInfo(User u) {
+		if(ud.updateMyInfo(u)) {
+			return true;
+		}
+		return false;
 	}
 
 }

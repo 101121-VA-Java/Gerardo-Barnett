@@ -24,13 +24,14 @@ create table if not exists ers_reimbursement_status (
     reimb_status      varchar(10)
 );
 
+drop table ers_reimbursement;
 create table if not exists ers_reimbursement (
     reimb_id          serial primary key,
-    reimb_amount      integer not null,
+    reimb_amount      decimal not null,
     reimb_submitted   timestamp not null,
     reimb_resolved    timestamp not null,
     reimb_description varchar(250),
-    reimb_receipt     json,
+    reimb_receipt     bytea null,
     reimb_author      integer references ers_users(ers_users_id),
     reimb_resolver    integer references ers_users(ers_users_id),
     reimb_status_id   integer references ers_reimbursement_status(reimb_status_id),
@@ -46,16 +47,20 @@ insert into ers_users (ers_username, ers_password, user_first_name, user_last_na
 insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('nayeliR', '1996', 'Nayeli', 'Rangel', 'nayelirangel@hotmail.com', 2, 1);
 insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('omarS', '1997', 'Omar', 'Sanchez', 'omarsanchez@hotmail.com', 2, 1);
 
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_json, reimb_author, reimb_resolver, reimb_status_id, reimb_status_id) values (100, 2021-11-15 12:00:01, 2021-11-16 12:00:01, 'Food' , null, 2, 1, 1, 2);
-
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, reimb_author, reimb_resolver, reimb_status_id) values (100.98, '2021-11-15 19:10:25-07', '2021-11-15 19:17:25-07', 'Food', null, 2, 1, 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, reimb_author, reimb_resolver, reimb_status_id) values (250.00, '2021-11-17 19:10:25-07', '2021-11-18 19:17:25-07', 'Travel', null, 3, 1, 2);
 
 
 insert into ers_reimburseent_type (reimb_type) values ('Food');
 insert into ers_reimburseent_type (reimb_type) values ('Travel');
+insert into ers_reimburseent_type (reimb_type) values ('Lodging');
+insert into ers_reimburseent_type (reimb_type) values ('Other');
 
 
 
 
 insert into ers_reimbursement_status (reimb_status) values ('pending');
 insert into ers_reimbursement_status (reimb_status) values ('resolved');
+insert into ers_reimbursement_status (reimb_status) values ('accepted');
+insert into ers_reimbursement_status (reimb_status) values ('rejected');
 
