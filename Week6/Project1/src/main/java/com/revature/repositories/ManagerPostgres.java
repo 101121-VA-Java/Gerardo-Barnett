@@ -43,7 +43,7 @@ public class ManagerPostgres implements ManagerDao{
 		String sql = "select * from ers_users u join ers_user_roles r on u.ers_username = r.uname "
 				+ "where u.ers_username = ? ;" ;
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, username);
+		ps.setString(1, u.getUsername());
 		ResultSet rs = ps.executeQuery();
 		
 		while ( rs.next() ) {

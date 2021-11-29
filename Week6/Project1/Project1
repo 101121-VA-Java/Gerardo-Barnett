@@ -36,3 +36,26 @@ create table if not exists ers_reimbursement (
     reimb_status_id   integer references ers_reimbursement_status(reimb_status_id),
     reimb_type_id     integer references ers_reimburseent_type(reimb_type_id)
 );
+
+insert into ers_user_roles (user_role) values ('Manager');
+insert into ers_user_roles (user_role) values ('Employee');
+
+insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('gerardoB', '1995', 'Gerardo', 'Barnett', 'gerardobarnett@hotmail.com', 1, null);
+insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('nancyT', '1998', 'Nancy', 'Talamantes', 'nancytalamantes@hotmail.com', 2, 1);
+insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('braianR', '1991', 'Braian', 'Rodriguez', 'braianrodriguez@hotmail.com', 2, 1);
+insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('nayeliR', '1996', 'Nayeli', 'Rangel', 'nayelirangel@hotmail.com', 2, 1);
+insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('omarS', '1997', 'Omar', 'Sanchez', 'omarsanchez@hotmail.com', 2, 1);
+
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_json, reimb_author, reimb_resolver, reimb_status_id, reimb_status_id) values (100, 2021-11-15 12:00:01, 2021-11-16 12:00:01, 'Food' , null, 2, 1, 1, 2);
+
+
+
+insert into ers_reimburseent_type (reimb_type) values ('Food');
+insert into ers_reimburseent_type (reimb_type) values ('Travel');
+
+
+
+
+insert into ers_reimbursement_status (reimb_status) values ('pending');
+insert into ers_reimbursement_status (reimb_status) values ('resolved');
+

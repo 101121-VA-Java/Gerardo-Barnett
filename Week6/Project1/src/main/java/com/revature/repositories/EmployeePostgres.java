@@ -17,7 +17,7 @@ public class EmployeePostgres implements EmployeeDao{
 
 	@Override
 	public boolean submitMyRequest(Reimbursement re) {
-		String sql = "insert into ers_reimbursement(reCreator, reAmount, reDescription, reStatus, reType)"
+		String sql = "insert into ers_reimbursement(reimb_author, reimb_amount, reimb_description, reimb_status_id, reimb_type_id)"
 				+ "values (?, ?, ?, ?, ?)";
 	try(Connection con = ConnectionUtil.getConnectionFromFile()){
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -42,7 +42,7 @@ public class EmployeePostgres implements EmployeeDao{
 
 	@Override
 	public ArrayList<Reimbursement> viewMyPending(User u) {
-		String sql = "select * from ers_reimbursement where reimb_author = ? and reimb_status_id = 0;";
+		String sql = "select * from ers_reimbursement where reimb_author = ? and reimb_status_id = 1;";
 		ArrayList<Reimbursement> pendingList = new ArrayList<Reimbursement>();
 		
 		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
@@ -51,9 +51,8 @@ public class EmployeePostgres implements EmployeeDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while ( rs.next() ) {		
-				Reimbursement re = new Reimbursement(rs.getInt("reimId"), rs.getString("author"), 
-						rs.getDouble("reimAmount"), rs.getString("description"), 
-						rs.getString("status"), rs.getString("type"));
+				Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submit"), u, 
+						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
 				pendingList.add(re);
 			}
 			
@@ -62,12 +61,12 @@ public class EmployeePostgres implements EmployeeDao{
 				e.printStackTrace();			
 			}
 			return pendingList;
-		return null;
+		
 	}
 
 	@Override
 	public ArrayList<Reimbursement> viewMyResolved(User u) {
-		String sql = "select * from ers_reimbursement where reimb_author = ? and reimb_status_id = 1;";
+		String sql = "select * from ers_reimbursement where reimb_author = ? and reimb_status_id = 2;";
 		ArrayList<Reimbursement> resolvedList = new ArrayList<Reimbursement>();
 		
 		try (Connection conn = ConnectionUtil.getConnectionFromFile()) {
@@ -76,9 +75,8 @@ public class EmployeePostgres implements EmployeeDao{
 			ResultSet rs = ps.executeQuery();
 
 			while ( rs.next() ) {	
-				Reimbursement re = new Reimbursement(rs.getInt("reimId"), rs.getString("author"), 
-						rs.getDouble("reimAmount"), rs.getString("description"), 
-						rs.getString("status"), rs.getString("type"));
+				Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submit"), u, 
+						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
 				resolvedList.add(re);
 			}
 			

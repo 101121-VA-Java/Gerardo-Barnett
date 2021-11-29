@@ -15,6 +15,23 @@ public class Status {
 		this.status = status;
 	}
 
+	public Status(int statusId) {
+		super();
+		this.statusId = statusId;
+		if (statusId == 1) {
+		status = "pending";
+		}
+		else if (statusId == 2)  {
+		status = "approved";
+		}
+		else if (statusId == 3) {
+		status = "denied";
+		}
+		else {
+			//log here
+		}
+	}
+
 	public int getStatusId() {
 		return statusId;
 	}

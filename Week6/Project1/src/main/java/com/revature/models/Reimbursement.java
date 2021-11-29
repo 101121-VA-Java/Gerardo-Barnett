@@ -32,6 +32,15 @@ public class Reimbursement {
 		this.status = status;
 		this.type = type;
 	}
+	
+	public Reimbursement(double reimAmount, Timestamp submit, User author, int status, int type) {
+		super();
+		this.reimAmount = reimAmount;
+		this.submit = submit;
+		this.author = author;
+		this.status = new Status(status);
+		this.type = new Type(type);
+	}
 
 	public int getReimId() {
 		return reimId;
@@ -104,6 +113,8 @@ public class Reimbursement {
 	public void setType(Type type) {
 		this.type = type;
 	}
+	
+	
 
 	@Override
 	public String toString() {

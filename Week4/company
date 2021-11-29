@@ -1,0 +1,52 @@
+-- Creating a schema
+--create schema company;
+--drop schema company;
+
+
+drop table if exists employees;
+create table if not exists employees(
+	e_id serial primary key,
+	e_name varchar(50) not null,
+	e_username varchar(50) unique,
+	e_password varchar(50) not null,
+	e_role varchar(50),
+	man_e_id integer references employees(e_id)
+);
+
+--alter table employees 
+--	alter column e_name set data type varchar(75);
+
+drop table if exists tasks;
+create table if not exists tasks(
+	/*
+	 * id
+	 * name
+	 * description
+	 * completion_status
+	 * due_date
+	 * employee
+	 */
+	id serial primary key,
+	t_name varchar(20),
+	t_description text,
+	t_completion_status varchar(10),
+	t_assign_date date default current_date,
+	t_due_date date,
+	t_assigned_emp integer references employees(e_id)
+);
+
+insert into employees (e_name, e_username, e_password, e_role) values ('Winnie', 'wbedells0', 'quS5yfk', 'VP Sales');
+insert into employees (e_name, e_username, e_password, e_role) values ('Morgana', 'mwidocks1', 'UfzlAiaRz03Z', 'Research Nurse');
+insert into employees (e_name, e_username, e_password, e_role) values ('Jamey', 'jshitliff2', 'TI8WmGhx7O', 'Safety Technician II');
+insert into employees (e_name, e_username, e_password, e_role) values ('Dolley', 'dsnellman3', 'jyu4Ki', 'Staff Accountant I');
+insert into employees (e_name, e_username, e_password, e_role) values ('Carol-jean', 'cfulop4', '4V2DBXD7lDo', 'Senior Financial Analyst');
+insert into employees (e_name, e_username, e_password, e_role) values ('Myrlene', 'melwel5', 'QNHeHfs', 'Sales Representative');
+insert into employees (e_name, e_username, e_password, e_role) values ('Sheilakathryn', 'slothean6', 'YypSfI3ovljB', 'Software Test Engineer II');
+insert into employees (e_name, e_username, e_password, e_role) values ('Colas', 'czollner7', 'qSXz2K', 'Registered Nurse');
+insert into employees (e_name, e_username, e_password, e_role) values ('Nicola', 'nclare8', 'u84mNA450', 'Research Nurse');
+insert into employees (e_name, e_username, e_password, e_role) values ('Grier', 'gginty9', 'BtsPdjehAc', 'Senior Financial Analyst');
+
+update employees set man_e_id = 4;
+update employees set man_e_id = 9 where length(e_role) > 19;
+
+select * from employees;

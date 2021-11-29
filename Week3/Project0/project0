@@ -64,6 +64,7 @@ insert into payments(o_id, v_id, c_id, paymentMade) values (4,9,15,true);
 insert into payments(o_id, v_id, c_id, paymentMade) values (5,10,10,true);
 
 insert into managers(m_name, m_username, m_password) values('Gerardo Barnett', 'werehog2006', 'opeth');
+insert into managers(m_name, m_username, m_password) values('Octavio Shaw', 'octav', 'sebastian');
 
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Brayden', 'BraydenW', '4567', 12341234);
 insert into customers (c_name, c_username, c_password, c_creditcard) values ('Kim', 'KimK', '8967', 24682468);
