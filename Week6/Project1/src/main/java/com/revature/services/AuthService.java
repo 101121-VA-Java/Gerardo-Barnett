@@ -51,6 +51,10 @@ private UsersDao ud;
 		return false;
 		
 	}
+	
+	public User getUserByUsername(String username) {
+		return ud.getUserByUsername(username) ;
+	}
 
 
 }
