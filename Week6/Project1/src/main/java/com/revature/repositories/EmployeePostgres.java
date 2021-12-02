@@ -17,15 +17,19 @@ public class EmployeePostgres implements EmployeeDao{
 
 	@Override
 	public boolean submitMyRequest(Reimbursement re) {
-		String sql = "insert into ers_reimbursement(reimb_author, reimb_amount, reimb_description, reimb_status_id, reimb_type_id)"
-				+ "values (?, ?, ?, ?, ?)";
+		String sql = "insert into ers_reimbursement(reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id)"
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 	try(Connection con = ConnectionUtil.getConnectionFromFile()){
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, re.getAuthor().getUsername());
-		ps.setDouble(2, re.getReimAmount());
-		ps.setString(3, re.getDescription());
-		ps.setInt(4, re.getStatus().getStatusId());
-		ps.setInt(5, re.getType().getTypeId());
+		
+		ps.setDouble(1, re.getReimAmount());
+		ps.setTimestamp(2, re.getSubmit());
+		ps.setTimestamp(3, re.getResolve());
+		ps.setString(4, re.getDescription());
+		ps.setString(5, re.getAuthor().getUsername());
+		ps.setInt(6, re.getResolver().getManager());
+		ps.setInt(7, re.getStatus().getStatusId());
+		ps.setInt(8, re.getType().getTypeId());
 		return true;
 		
 	} catch (SQLException e) {

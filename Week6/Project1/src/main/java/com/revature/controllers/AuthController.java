@@ -15,7 +15,8 @@ private static AuthService as = new AuthService();
 		String password = ctx.formParam("password");
 		
 		String token = null;
-		
+		System.out.println(username);
+		System.out.println(password);
 		if(username != null && password != null) {
 			token = as.loginSystem(username, password);
 		}

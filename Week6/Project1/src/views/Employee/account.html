@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User information</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -17,23 +17,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="employee.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="employee.html">Home<span class="sr-only">(current)</span></a>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Reimbursements
+                ERS
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="reimbursement.html">Submit Reimbursement</a>
-                <a class="dropdown-item" href="#">Reimbursement table</a>
+                <a class="dropdown-item" href="reimbursement.html">Submit a Reimbursement</a>
+                <a class="dropdown-item" href="pendingreimbursement.html">View pending reimbursements</a>
+                <a class="dropdown-item" href="resolvedreimbursement.html">View resolved reimbursements</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Information</a>
+                <a class="dropdown-item" href="account.html">Account information</a>
               </div>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="logout-button" onclick="logout()" tabindex="-1" aria-disabled="true">Logout</a>
+              <a class="nav-link" id="logout-button" onclick="logout()" tabindex="-1" aria-disabled="true" href="../login.html">Logout</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -42,33 +43,25 @@
           </form>
         </div>
       </nav>
+
+      <h1>Employee Information</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody id="employee-tbody"></tbody>
+  </table>
+  <button onclick="updateReveal()">Update Information</button>
+  <div id="update-form"></div> 
+  <div id="error-div"></div>
+  
+  <script src="account.js"></script>
      
-    Please enter a new Reimbursment claim
-    <form onsubmit="return false">
-        <div class="form-group">
-            <div class="form-group">
-                <label for="type">Choose type of claim</label>
-                <select class="form-control" id="type">
-                  <option>Lodging</option>
-                  <option>Travel</option>
-                  <option>Food</option>
-                  <option>Other</option>
-                 
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="reimAmount">Claim amount</label>
-            <!-- find out how to put in the $ before the writting so that $ stays when claim is written on -->
-            <input type="text" class="form-control" id="reimAmount" placeholder="$00.00">
-        </div>
-        <div class="form-group">
-            <label for="descrip">Reason for your claim</label>
-            <input type="text" class="form-control" id="descrip" placeholder="Type reason here...">
-        </div>
-        <button onclick="newClaim()" type="submit" class="btn btn-primary">Submit new Claim</button>
-    </form>
-    <div id="error-div"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

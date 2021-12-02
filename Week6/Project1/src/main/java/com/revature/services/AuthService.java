@@ -21,11 +21,11 @@ private UsersDao ud;
 		String token = null;
 		
 		User principal = ud.getUserByUsername(username);
-		
+		System.out.println(principal);
 		if(principal != null && principal.getPassword().equals(password)) {
 			token = principal.getId() + ":" + principal.getRole();
 		}
-		
+		System.out.println(token);
 		return token;
 	}
 	

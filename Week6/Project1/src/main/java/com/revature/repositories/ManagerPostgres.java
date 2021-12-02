@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
@@ -92,20 +93,95 @@ public class ManagerPostgres implements ManagerDao{
 	}
 
 	@Override
-	public ArrayList<User> viewAllEmployees() throws IOException, SQLException {
-		User u = null;
-		Connection con = ConnectionUtil.getConnectionFromFile();
-		String sql = "select * from ers_users u join ers_user_roles r on u.ers_username = r.uname "
-				+ "where u.ers_username = ? ;" ;
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, u.getUsername());
-		ResultSet rs = ps.executeQuery();
+	public List<User> viewAllEmployees() throws IOException, SQLException {
+		String sql = "select * from ers_users;";
+		List<User> u = new ArrayList<>();
 		
-		while ( rs.next() ) {
-			
-			
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+
+			while (rs.next()) {
+				u.add(null);
+			}
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
 		}
-		return null;
+		return u;
 	}
+	
+	@Override
+	public User add(User u) {
+		String sql = "insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) "
+				+ "values (?, ?, ?, ?, ?, ?, ?);";
+		
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setString(1, u.getUsername());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getFirstName());
+			ps.setString(4, u.getLastName());
+			ps.setString(5, u.getEmail());
+			ps.setInt(6, u.getRole());
+			ps.setInt(7, u.getManager());
+		
+			
+
+			ps.execute();
+
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+	
+	@Override
+	public boolean update(Reimbursement re) {
+		String sql = "update ers_reimbursement set reimb_amount = ?, reimb_submitted = ?, reimb_resolved = ?, reimb_description = ?, reimb_author = ?, reimb_resolver = ?, reimb_status_id = ?, reimb_type_id = ?"
+				+ "where reimb_id = ?;" ;
+		
+		int rowsChanged = -1;
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setDouble(1, re.getReimAmount());
+			ps.setTimestamp(2, re.getSubmit());
+			ps.setTimestamp(3, re.getResolve());
+			ps.setString(4, re.getDescription());
+			ps.setString(5, re.getAuthor().getUsername());
+			ps.setInt(6, re.getResolver().getManager());
+			ps.setInt(7, re.getStatus().getStatusId());
+			ps.setInt(8, re.getType().getTypeId());
+
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		if (rowsChanged > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public Reimbursement remove(Reimbursement re) {
+		String sql = "delete from ers_reimbursement where reimb_id = ?;";
+		int rowsChanged = -1;
+		int id = re.getReimId();
+		try (Connection con = ConnectionUtil.getConnectionFromFile()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+		if (rowsChanged > 0) {
+			return null;
+		} else {
+			return re;
+		}
+	}
+
 
 }

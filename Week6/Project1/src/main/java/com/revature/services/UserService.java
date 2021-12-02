@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import com.revature.models.User;
 import com.revature.repositories.UserPostgres;
 import com.revature.repositories.UsersDao;
@@ -7,7 +9,7 @@ import com.revature.repositories.UsersDao;
 public class UserService {
 	
 	UserPostgres up = new UserPostgres();
-	private UsersDao ud;
+	private UsersDao ud = new UserPostgres();
 	
 	User getUserByUsername(String username) {
 		User u = null;
@@ -28,5 +30,10 @@ public class UserService {
 		}
 		return false;
 	}
+	
+//	public List<User> getAllUsers(){
+//		List<User> allUsers = ud.getAll();
+//		return allUsers;
+//	}
 
 }

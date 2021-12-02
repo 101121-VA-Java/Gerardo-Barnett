@@ -3,6 +3,7 @@ package com.revature.repositories;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
@@ -13,6 +14,8 @@ public interface ManagerDao {
 	boolean updateRequest(Reimbursement re);
 	ArrayList<Reimbursement> viewAllResolved();
 	Reimbursement viewSpecificRequest();
-	ArrayList<User> viewAllEmployees() throws IOException, SQLException;
-
+	List<User> viewAllEmployees() throws IOException, SQLException;
+	User add(User u);
+	public boolean update(Reimbursement re);
+	public Reimbursement remove(Reimbursement re);
 }

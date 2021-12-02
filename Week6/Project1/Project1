@@ -14,11 +14,13 @@ create table if not exists ers_users (
     ers_manager_id    integer references ers_users(ers_users_id)
 );
 
+drop table ers_reimbursement_type;
 create table if not exists ers_reimburseent_type (
     reimb_type_id     serial primary key,
     reimb_type        varchar(10)
 );
 
+drop table ers_reimbursement_status;
 create table if not exists ers_reimbursement_status (
     reimb_status_id   serial primary key,
     reimb_status      varchar(10)
@@ -31,7 +33,6 @@ create table if not exists ers_reimbursement (
     reimb_submitted   timestamp not null,
     reimb_resolved    timestamp not null,
     reimb_description varchar(250),
-    reimb_receipt     bytea null,
     reimb_author      integer references ers_users(ers_users_id),
     reimb_resolver    integer references ers_users(ers_users_id),
     reimb_status_id   integer references ers_reimbursement_status(reimb_status_id),
@@ -47,13 +48,13 @@ insert into ers_users (ers_username, ers_password, user_first_name, user_last_na
 insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('nayeliR', '1996', 'Nayeli', 'Rangel', 'nayelirangel@hotmail.com', 2, 1);
 insert into ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id, ers_manager_id) values ('omarS', '1997', 'Omar', 'Sanchez', 'omarsanchez@hotmail.com', 2, 1);
 
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, reimb_author, reimb_resolver, reimb_status_id) values (100.98, '2021-11-15 19:10:25-07', '2021-11-15 19:17:25-07', 'Food', null, 2, 1, 1);
-insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_receipt, reimb_author, reimb_resolver, reimb_status_id) values (250.00, '2021-11-17 19:10:25-07', '2021-11-18 19:17:25-07', 'Travel', null, 3, 1, 2);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id) values (100.98, '2021-11-15 19:10:25-07', '2021-11-15 19:17:25-07', 'Food', 2, 1, 1, 1);
+insert into ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id) values (250.00, '2021-11-17 19:10:25-07', '2021-11-18 19:17:25-07', 'Travel', 3, 1, 1, 2);
 
 
-insert into ers_reimburseent_type (reimb_type) values ('Food');
-insert into ers_reimburseent_type (reimb_type) values ('Travel');
 insert into ers_reimburseent_type (reimb_type) values ('Lodging');
+insert into ers_reimburseent_type (reimb_type) values ('Travel');
+insert into ers_reimburseent_type (reimb_type) values ('Food');
 insert into ers_reimburseent_type (reimb_type) values ('Other');
 
 
@@ -61,6 +62,6 @@ insert into ers_reimburseent_type (reimb_type) values ('Other');
 
 insert into ers_reimbursement_status (reimb_status) values ('pending');
 insert into ers_reimbursement_status (reimb_status) values ('resolved');
-insert into ers_reimbursement_status (reimb_status) values ('accepted');
-insert into ers_reimbursement_status (reimb_status) values ('rejected');
+insert into ers_reimbursement_status (reimb_status) values ('approved');
+insert into ers_reimbursement_status (reimb_status) values ('denied');
 

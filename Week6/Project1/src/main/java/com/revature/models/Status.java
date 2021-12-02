@@ -1,6 +1,10 @@
 package com.revature.models;
 
 public class Status {
+	public static int PENDING = 1;
+	public static int APPROVED = 2;
+	public static int DENIED = 3;
+	
 	private int statusId;
 	private String status;
 	

@@ -17,7 +17,7 @@ public class Routes {
 		
 		Javalin app = Javalin.create( (config) -> {		
 			config.enableCorsForAllOrigins();
-		}).start(80);
+		}).start(7000);
 		
 		
 		app.routes(() -> {
@@ -57,8 +57,8 @@ public class Routes {
 					get(ManagerController::viewReByUserId); //Manager can view reimbursement requests from a single Employee 
 				});
 			});
-			path("employees", ()->{
-				path("",() ->{
+			path("manager", ()->{
+				path("employees",() ->{
 					get(ManagerController::viewAllEmployees); //Manager can view all employees
 				});
 			});

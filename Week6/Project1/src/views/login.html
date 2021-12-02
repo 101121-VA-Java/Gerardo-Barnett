@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -19,15 +20,13 @@
         
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Employees</a>
+                <a class="nav-link" href="#">ERS</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Info</a>
-            </li>
+            
         </ul>
         <ul class="navbar-nav navbar-right">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="#" id="logout">Logout</a>
             </li>
         </ul>
 
@@ -61,7 +60,7 @@
                 <br>
                 <br>
                 <div class="form-row justify-content-center">
-                    <input class="btn btn-outline-secondary" value="Login" id="submitButton">
+                    <button onclick="login()" type="button" class="btn btn-outline-secondary" id="submitButton">Login</button>
                 </div>
                 <br>
                 <br>

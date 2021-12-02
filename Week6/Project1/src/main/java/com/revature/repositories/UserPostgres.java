@@ -1,10 +1,13 @@
 package com.revature.repositories;
 
+import java.beans.Statement;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.models.User;
 import com.revature.util.ConnectionUtil;
@@ -24,12 +27,13 @@ public class UserPostgres implements UsersDao{
 			if(rs.next()) {
 				u = new User(
 						rs.getInt("ers_users_id"),
+						rs.getString("user_first_name"),
+						rs.getString("user_last_name"),
 						rs.getString("ers_username"),
 						rs.getString("ers_password"),
-						rs.getString("ers_first_name"),
-						rs.getString("ers_last_name"),
-						rs.getString("ers_email"), 
-						null
+						rs.getString("user_email"),
+						rs.getInt("user_role_id"),
+						rs.getInt("ers_manager_id")
 						);
 			}
 			
@@ -55,12 +59,13 @@ public class UserPostgres implements UsersDao{
 			if(rs.next()) {
 				u = new User(
 						rs.getInt("ers_users_id"),
+						rs.getString("user_first_name"),
+						rs.getString("user_last_name"),
 						rs.getString("ers_username"),
 						rs.getString("ers_password"),
-						rs.getString("ers_first_name"),
-						rs.getString("ers_last_name"),
-						rs.getString("ers_email"), 
-						null
+						rs.getString("user_email"),
+						rs.getInt("user_role_id"),
+						rs.getInt("ers_manager_id")
 						);
 			}
 			
@@ -85,12 +90,13 @@ public class UserPostgres implements UsersDao{
 			if(rs.next()) {
 				u = new User(
 						rs.getInt("ers_users_id"),
+						rs.getString("user_first_name"),
+						rs.getString("user_last_name"),
 						rs.getString("ers_username"),
 						rs.getString("ers_password"),
-						rs.getString("ers_first_name"),
-						rs.getString("ers_last_name"),
-						rs.getString("ers_email"), 
-						null
+						rs.getString("user_email"),
+						rs.getInt("user_role_id"),
+						rs.getInt("ers_manager_id")
 						);
 			}
 			
@@ -128,6 +134,7 @@ public class UserPostgres implements UsersDao{
 			return false;
 		}
 	}
+	
 	
 
 }
