@@ -3,24 +3,31 @@ package com.revature.repositories;
 public class DaoFactory {
 	
 	private static DaoFactory df;
-	private UsersDao ud;
-	
+	private UserDao ud;
+	private ReimbursementDao rd;
+
 	private DaoFactory() {
 	}
-	
-	public static synchronized DaoFactory getDaoFactory() {
-		if(df == null) {
+
+
+	public static synchronized DaoFactory getDAOFactory() {
+		if (df == null) {
 			df = new DaoFactory();
 		}
-		
 		return df;
 	}
 	
-	public UsersDao getUsersDao() {
+	public UserDao getUserDao() {
 		if(ud == null) {
 			ud = new UserPostgres();
 		}
 		return ud;
+	}
+	public ReimbursementDao getReimbursementDao() {
+		if(rd == null) {
+			rd = new ReimbursementPostgres();
+		}
+		return rd;
 	}
 
 }

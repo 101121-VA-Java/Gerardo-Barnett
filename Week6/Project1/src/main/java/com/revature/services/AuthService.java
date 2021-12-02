@@ -2,17 +2,18 @@ package com.revature.services;
 
 import java.util.Arrays;
 
+
 import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.repositories.DaoFactory;
-import com.revature.repositories.UsersDao;
+import com.revature.repositories.UserDao;
 
 public class AuthService {
 	
-private UsersDao ud;
+private UserDao ud;
 	
 	public AuthService() {
-		ud = DaoFactory.getDaoFactory().getUsersDao();
+		ud = DaoFactory.getDAOFactory().getUserDao();
 	}
 	
 	
@@ -20,7 +21,7 @@ private UsersDao ud;
 		
 		String token = null;
 		
-		User principal = ud.getUserByUsername(username);
+		User principal = ud.getEmployeeByUsername(username);
 		System.out.println(principal);
 		if(principal != null && principal.getPassword().equals(password)) {
 			token = principal.getId() + ":" + principal.getRole();
@@ -42,7 +43,7 @@ private UsersDao ud;
 		String[] info = token.split(":");
 		int token_id = Integer.parseInt(info[0]);
 		Role token_role = Role.valueOf(info[1]);
-		User principal = ud.getUserById(token_id);
+		User principal = ud.getEmployeeById(token_id);
 		
 		if(principal != null && token_role.equals(principal.getRole())
 				&& Arrays.asList(allowedRoles).contains(token_role)) {
@@ -53,7 +54,7 @@ private UsersDao ud;
 	}
 	
 	public User getUserByUsername(String username) {
-		return ud.getUserByUsername(username) ;
+		return ud.getEmployeeByUsername(username) ;
 	}
 
 

@@ -14,8 +14,9 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public User(int id, String firstName, String lastName, String username, String password, String email, int role, int manager) {
+	
+	public User(int id, String firstName, String lastName, String username, String password, String email, int role,
+			int manager) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -24,7 +25,11 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.role = role;
+		this.manager = manager;
 	}
+
+
+
 
 	public int getId() {
 		return id;

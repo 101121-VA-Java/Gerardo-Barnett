@@ -14,20 +14,20 @@ public class EmployeeController {
 	
 	public static void getUserById(Context ctx) {    
 		
-		String token = ctx.header("Authorization");
-		int id = Integer.parseInt(ctx.pathParam("id"));
-
-		User employee = up.getUserById(id);
-
-		if (employee != null) {
-			ctx.json(employee);
-			ctx.status(HttpCode.OK);
-		} else {
-//			ctx.status(404);
-			ctx.status(HttpCode.NOT_FOUND);
-		}
-		
-    	ctx.result("list");
+//		String token = ctx.header("Authorization");
+//		int id = Integer.parseInt(ctx.pathParam("id"));
+//
+//		User employee = up.getUserById(id);
+//
+//		if (employee != null) {
+//			ctx.json(employee);
+//			ctx.status(HttpCode.OK);
+//		} else {
+////			ctx.status(404);
+//			ctx.status(HttpCode.NOT_FOUND);
+//		}
+//		
+//    	ctx.result("list");
     }
     
     public static void submitMyRequest(Context ctx) {    
@@ -105,13 +105,13 @@ public class EmployeeController {
 //			ctx.status(400);
 //		}
     	
-    	ctx.result("list");
-    }
+//    	ctx.result("list");
+//    }
+//    
+//    public static void viewInfo(Context ctx) {    
+//
+//    	
+//    }
     
-    public static void viewInfo(Context ctx) {    
-
-    	
-    }
-    
-
+}
 }

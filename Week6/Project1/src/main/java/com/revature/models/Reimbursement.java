@@ -9,10 +9,10 @@ public class Reimbursement {
 	private Timestamp resolve;
 	private String description;
 //	private blob picture
-	private User author;
-	private User resolver;
-	private Status status;
-	private Type type;
+	private int author;
+	private int resolver;
+	private int status;
+	private int type;
 	
 	public Reimbursement() {
 		super();
@@ -20,7 +20,7 @@ public class Reimbursement {
 	}
 
 	public Reimbursement(int reimId, double reimAmount, Timestamp submit, Timestamp resolve, String description,
-			User author, User resolver, Status status, Type type) {
+			int author, int resolver, int status, int type) {
 		super();
 		this.reimId = reimId;
 		this.reimAmount = reimAmount;
@@ -31,15 +31,6 @@ public class Reimbursement {
 		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
-	}
-	
-	public Reimbursement(double reimAmount, Timestamp submit, User author, int status, int type) {
-		super();
-		this.reimAmount = reimAmount;
-		this.submit = submit;
-		this.author = author;
-		this.status = new Status(status);
-		this.type = new Type(type);
 	}
 
 	public int getReimId() {
@@ -82,39 +73,37 @@ public class Reimbursement {
 		this.description = description;
 	}
 
-	public User getAuthor() {
+	public int getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(int author) {
 		this.author = author;
 	}
 
-	public User getResolver() {
+	public int getResolver() {
 		return resolver;
 	}
 
-	public void setResolver(User resolver) {
+	public void setResolver(int resolver) {
 		this.resolver = resolver;
 	}
 
-	public Status getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public Type getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(int type) {
 		this.type = type;
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -123,6 +112,7 @@ public class Reimbursement {
 				+ ", status=" + status + ", type=" + type + "]";
 	}
 
+	
 	
 	
 	

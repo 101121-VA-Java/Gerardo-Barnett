@@ -16,31 +16,31 @@ import io.javalin.http.Context;
 
 public class ManagerService {
 	
-	ManagerDao mp = new ManagerPostgres();
-	UsersDao ud = new UserPostgres();
-	
-	public List<Reimbursement> getAllPendingRequests(){
-		List<Reimbursement> allReimbursements = mp.viewAllPending();
-		List<Reimbursement> allPendingReimbursements = new ArrayList<>();
-		for(Reimbursement r: allReimbursements) {
-			if(r.getStatus().getStatusId() == Status.PENDING) {
-				allPendingReimbursements.add(r);
-			}
-		}
-		return allPendingReimbursements;
-	}
-	
-	public List<Reimbursement> getAllResolvedRequests(){
-		List<Reimbursement> allReimbursements = mp.viewAllResolved();
-		List<Reimbursement> allResolvedReimbursements = new ArrayList<>();
-		for(Reimbursement r: allReimbursements) {
-			if(r.getStatus().getStatusId() == Status.APPROVED || r.getStatus().getStatusId() == Status.DENIED ) {
-				allResolvedReimbursements.add(r);
-			}
-		}
-		return allResolvedReimbursements;
-	}
-	
+//	ManagerDao mp = new ManagerPostgres();
+//	UsersDao ud = new UserPostgres();
+//	
+//	public List<Reimbursement> getAllPendingRequests(){
+//		List<Reimbursement> allReimbursements = mp.viewAllPending();
+//		List<Reimbursement> allPendingReimbursements = new ArrayList<>();
+//		for(Reimbursement r: allReimbursements) {
+//			if(r.getStatus().getStatusId() == Status.PENDING) {
+//				allPendingReimbursements.add(r);
+//			}
+//		}
+//		return allPendingReimbursements;
+//	}
+//	
+//	public List<Reimbursement> getAllResolvedRequests(){
+//		List<Reimbursement> allReimbursements = mp.viewAllResolved();
+//		List<Reimbursement> allResolvedReimbursements = new ArrayList<>();
+//		for(Reimbursement r: allReimbursements) {
+//			if(r.getStatus().getStatusId() == Status.APPROVED || r.getStatus().getStatusId() == Status.DENIED ) {
+//				allResolvedReimbursements.add(r);
+//			}
+//		}
+//		return allResolvedReimbursements;
+//	}
+//	
 	
 	
 	

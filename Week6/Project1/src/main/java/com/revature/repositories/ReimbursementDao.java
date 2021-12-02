@@ -21,5 +21,7 @@ public interface ReimbursementDao {
 	boolean changeReimbursementStatus(Reimbursement r);
 	
 	Reimbursement getAllReimbursement(int id);
+	
+	List<Reimbursement> getEmpReimByStatus(int id, int status);
 
 }

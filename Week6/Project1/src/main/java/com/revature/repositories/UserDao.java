@@ -5,14 +5,17 @@ import java.util.List;
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
 
-public interface UserDao extends GenericDao<User>{
+public interface UserDao{
 	
-    boolean loginUser (User u);
-	
-	User viewUserInfo(User u);	
-	User updateUserInfo(User u);
-	
-	User viewAllEmployees();	
+	List<User> getUsers();
+
+	User getEmployeeById(int id);
+
+	User getEmployeeByUsername(String username);
+
+	User addEmployee(User e);
+
+	boolean updateEmployee(User e);
 	
 	
 		
