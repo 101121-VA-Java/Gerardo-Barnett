@@ -21,6 +21,12 @@ public class Driver {
 			config.enableCorsForAllOrigins();
 		}).start(7000);
 		
+		app.before(ctx -> {
+			ctx.header("Access-Control-Allow-Headers", "Authorization");
+			ctx.header("Access-Control-Expose-Headers", "Authorization");
+		});
+
+		
 		
 		app.routes(() -> {
 			

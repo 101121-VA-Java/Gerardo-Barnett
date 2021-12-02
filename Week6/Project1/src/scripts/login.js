@@ -18,9 +18,11 @@ function login(){
             sessionStorage.setItem("token", authToken);
 
             let tok = sessionStorage.getItem("token");
+            console.log(authToken);
             // console.log(authToken);
             // if(tok.split(":")[1] == 2)
-            if(username == 'gerardoB'){
+            // if(sessionStorage.authToken.split(":")[1] == 2)
+            if(authToken.split(":")[1] === '1'){
                
                 window.location.href = "../views/manager/manager.html";
                 

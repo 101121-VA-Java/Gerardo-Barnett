@@ -26,7 +26,7 @@ public class ManagerPostgres implements ManagerDao{
 				ResultSet rs = s.executeQuery(sql);
 				
 				while ( rs.next() ) {		
-					Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submit"), u, 
+					Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submitted"), u, 
 							rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
 					pendingList.add(re);
 				}
@@ -57,7 +57,7 @@ public class ManagerPostgres implements ManagerDao{
 				ResultSet rs = s.executeQuery(sql);
 				
 				while ( rs.next() ) {		
-					Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submit"), u, 
+					Reimbursement re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submitted"), u, 
 							rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
 					pendingList.add(re);
 				}
@@ -79,7 +79,7 @@ public class ManagerPostgres implements ManagerDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while ( rs.next() ) {		
-				re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submit"), u, 
+				re = new Reimbursement(rs.getDouble("reimb_amount"), rs.getTimestamp("reimb_submitted"), u, 
 						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"));
 			}
 			

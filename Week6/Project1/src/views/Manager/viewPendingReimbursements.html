@@ -23,7 +23,7 @@
                 Reimbursements
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="viewPendingReimbursements.html">View pending reimbursements</a>
+                <a class="dropdown-item" onclick='getAllReimbursements()' href="viewPendingReimbursements.html">View pending reimbursements</a>
                 <a class="dropdown-item" href="viewResolvedReimbursements.html">View resolved reimbursements</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="viewEmployees.html">View all Employees</a>
@@ -43,23 +43,22 @@
         </div>
       </nav>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Select</th>
-            <th scope="col">Reimbursement ID</th>
-            <th scope="col">Author</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Time Submitted</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>
-            <th scope="col">Type</th>
-          </tr>
-        </thead>
-        <tbody id="pending-tbody"></tbody>
-      </table>
-      <div id="accept-or-reject"></div>
-      <div id="error-div"></div>
+      <main class="container-fluid mx-auto " style="padding: 0 7.5em;">
+        
+        <div class="container align-content-center" id="manbox">
+            <br>
+            <br>
+            <br>
+            <br>
+            <form> 
+                <br>
+                <br>
+                <br>
+                <div class="form-row justify-content-center">
+                    <div style="color:red;" id="error-div"></div>
+                </div>
+            </form>
+    </main>
     
       <script src="viewPendingReimbursements.html"></script>
      
