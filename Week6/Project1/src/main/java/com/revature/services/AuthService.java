@@ -2,6 +2,8 @@ package com.revature.services;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.Role;
 import com.revature.models.User;
@@ -11,6 +13,7 @@ import com.revature.repositories.UserDao;
 public class AuthService {
 	
 private UserDao ud;
+private static Logger log = LogManager.getRootLogger();
 	
 	public AuthService() {
 		ud = DaoFactory.getDAOFactory().getUserDao();
@@ -26,6 +29,7 @@ private UserDao ud;
 		if(principal != null && principal.getPassword().equals(password)) {
 			token = principal.getId() + ":" + principal.getRole();
 		}
+		log.trace("Login has been successful");
 		System.out.println(token);
 		return token;
 	}

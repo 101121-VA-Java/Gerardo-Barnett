@@ -12,8 +12,12 @@ import java.util.ArrayList;
 import com.revature.models.Reimbursement;
 import com.revature.util.ConnectionUtil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ReimbursementPostgres implements ReimbursementDao{
+	
+	private static Logger log = LogManager.getRootLogger();
 
 	@Override
 	public List<Reimbursement> getReimbursements() {
@@ -26,7 +30,7 @@ public class ReimbursementPostgres implements ReimbursementDao{
 			
 			while (rs.next()) {
 				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"),
-						rs.getDouble("reimb_amount"),
+						rs.getFloat("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"),
 						rs.getTimestamp("reimb_resolved"),
 						rs.getString("reimb_description"),
@@ -39,7 +43,7 @@ public class ReimbursementPostgres implements ReimbursementDao{
 			}
 			
 		} catch (SQLException | IOException e) {
-			
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		return reimbursements;
@@ -57,7 +61,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			
 			while (rs.next()) {
 				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"),
-						rs.getDouble("reimb_amount"),
+						rs.getFloat("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"),
 						rs.getTimestamp("reimb_resolved"),
 						rs.getString("reimb_description"),
@@ -69,7 +73,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			}
 			
 		} catch (SQLException | IOException e) {
-			
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		return rlist;
@@ -89,7 +93,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 						
 						while (rs.next()) {
 							Reimbursement r = new Reimbursement(rs.getInt("reimb_id"),
-									rs.getDouble("reimb_amount"),
+									rs.getFloat("reimb_amount"),
 									rs.getTimestamp("reimb_submitted"),
 									rs.getTimestamp("reimb_resolved"),
 									rs.getString("reimb_description"),
@@ -101,7 +105,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 						}
 						
 					} catch (SQLException | IOException e) {
-						
+						log.error("Connection failed!");
 						e.printStackTrace();
 					}
 					return rlist;
@@ -121,7 +125,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			
 			while (rs.next()) {
 				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"),
-						rs.getDouble("reimb_amount"),
+						rs.getFloat("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"),
 						rs.getTimestamp("reimb_resolved"),
 						rs.getString("reimb_description"),
@@ -133,7 +137,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			}
 			
 		} catch (SQLException | IOException e) {
-			
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		return rlist;
@@ -159,6 +163,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		return r;
@@ -183,6 +188,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 		
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}return result;
 	}
@@ -202,7 +208,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			if (rs.next()) {
 				
 				 r = new Reimbursement(rs.getInt("reimb_id"),
-							rs.getDouble("reimb_amount"),
+							rs.getFloat("reimb_amount"),
 							rs.getTimestamp("reimb_submitted"),
 							rs.getTimestamp("reimb_resolved"),
 							rs.getString("reimb_description"),
@@ -214,7 +220,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			}
 			
 		} catch (SQLException | IOException e) {
-			
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		
@@ -235,7 +241,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			
 			while (rs.next()) {
 				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"),
-						rs.getDouble("reimb_amount"),
+						rs.getFloat("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"),
 						rs.getTimestamp("reimb_resolved"),
 						rs.getString("reimb_description"),
@@ -247,7 +253,7 @@ List<Reimbursement> rlist = new ArrayList<>();
 			}
 			
 		} catch (SQLException | IOException e) {
-			
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 		return rlist;

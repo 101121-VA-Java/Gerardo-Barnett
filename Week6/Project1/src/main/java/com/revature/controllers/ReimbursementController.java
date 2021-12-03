@@ -9,13 +9,16 @@ import com.revature.services.ReimbursementService;
 import io.javalin.http.Context;
 import io.javalin.http.HttpCode;
 
+
 public class ReimbursementController {
 	
 	private static ReimbursementService rs = new ReimbursementService();
 	private static AuthService as = new AuthService();
 
+	
+	
     public static void add(Context ctx) {
-    	System.out.println("We got this far");
+    	System.out.println("add reimbursement");
        Reimbursement r = rs.add(ctx.bodyAsClass(Reimbursement.class));
        r.setStatus(1);
        System.out.println(r);
@@ -24,28 +27,24 @@ public class ReimbursementController {
     }
 
 	public static void get(Context ctx) {
-		System.out.println("Why am I being called??");
+		System.out.println("get reimbursements");
 		List<Reimbursement> r = rs.getReimbursements();
-		
+		System.out.println(r);
 		ctx.json(r);
 		ctx.status(HttpCode.OK);
 	}
 	
 	public static void empGet(Context ctx) {
-		
-		System.out.println("We're here in controller");
 		int id = Integer.parseInt(ctx.pathParam("id"));
-		System.out.println("We're here in controller");
+		System.out.println("Reimbursements by id");
 		List<Reimbursement> r = rs.getReimbursementById(id);
 		System.out.println(r);
 		ctx.json(r);
 		ctx.status(HttpCode.OK);
 	}
 	public static void statusGet(Context ctx) {
-		
-		System.out.println("Check 1");
 		int id = Integer.parseInt(ctx.pathParam("id"));
-		System.out.println("Check 2");
+		System.out.println("Status");
 		List<Reimbursement> r = rs.getByStatus(id);
 		System.out.println(r);
 		ctx.json(r);
@@ -71,7 +70,7 @@ public class ReimbursementController {
     }
        public static void empReimbursement(Context ctx) {
 		
-		System.out.println("We're here in controller");
+		System.out.println("Reimbursement by status");
 		int id = Integer.parseInt(ctx.pathParam("id"));
 		int status = Integer.parseInt(ctx.pathParam("status"));
 		System.out.println("???");

@@ -13,8 +13,12 @@ import java.util.List;
 import com.revature.models.User;
 import com.revature.util.ConnectionUtil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class UserPostgres implements UserDao{
 
+	private static Logger log = LogManager.getRootLogger();
 	
 	@Override
 	public List<User> getUsers() {
@@ -34,6 +38,7 @@ public class UserPostgres implements UserDao{
 				users.add(u);
 			}
 		} catch (SQLException | IOException u) {
+			log.error("Connection failed!");
 			u.printStackTrace();
 		}
 
@@ -59,6 +64,7 @@ public class UserPostgres implements UserDao{
 						rs.getString("user_email"), rs.getInt("user_role_id"), rs.getInt("ers_manager_id"));
 			}
 		} catch (SQLException | IOException e) {
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 
@@ -89,6 +95,7 @@ public class UserPostgres implements UserDao{
 						rs.getInt("ers_manager_id"));
 			}
 		} catch (SQLException | IOException e) {
+			log.error("Connection failed!");
 			e.printStackTrace();
 		}
 
@@ -122,6 +129,7 @@ public class UserPostgres implements UserDao{
 				newUser.setManager(1);
 			}
 		} catch (SQLException | IOException e1) {
+			log.error("Connection failed!");
 			e1.printStackTrace();
 		}
 		
@@ -146,7 +154,7 @@ public class UserPostgres implements UserDao{
 			 result = true;
 			
 		} catch (SQLException | IOException e1) {
-			
+			log.error("Connection failed!");
 			e1.printStackTrace();
 		} 
 		return result;

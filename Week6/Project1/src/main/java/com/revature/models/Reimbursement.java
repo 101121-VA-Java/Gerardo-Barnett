@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Reimbursement {
 	private int reimId;
-	private double reimAmount;
+	private float reimAmount;
 	private Timestamp submit;
 	private Timestamp resolve;
 	private String description;
@@ -19,7 +19,7 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int reimId, double reimAmount, Timestamp submit, Timestamp resolve, String description,
+	public Reimbursement(int reimId, float reimAmount, Timestamp submit, Timestamp resolve, String description,
 			int author, int resolver, int status, int type) {
 		super();
 		this.reimId = reimId;
@@ -45,7 +45,7 @@ public class Reimbursement {
 		return reimAmount;
 	}
 
-	public void setReimAmount(double reimAmount) {
+	public void setReimAmount(float reimAmount) {
 		this.reimAmount = reimAmount;
 	}
 
