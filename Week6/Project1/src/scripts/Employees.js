@@ -189,7 +189,7 @@ function updateWindow() {
             <br>
             <br>
             <div class="form-row justify-content-center">
-                <input class="btn btn-outline-secondary" value="Submit Updated Profile" id="submitUpdateProfile" onclick='updateEmployeeProfile(sessionStorage.token.split(":")[0])'>
+                <input class="btn btn-outline-secondary" value="Update Profile" id="submitUpdateProfile" onclick='updateEmployeeProfile(sessionStorage.token.split(":")[0])'>
             </div>
             <br>
             <br>

@@ -43,8 +43,8 @@ function inputForm() {
           for (let index = 0; index < res.length; index++) {
             result += `<div>Reimbursement ID: ${res[index].reimId}</div>`;
             result += `<div>Amount: ${res[index].reimAmount}</div>`;
-            result += `<div>Submitted On: ${res[index].submit}</div>`;
-            result += `<div>Resolved At: ${res[index].resolved}</div>`;
+            result += `<div>Submitted Date: ${res[index].submit}</div>`;
+            result += `<div>Resolved Date: ${res[index].resolved}</div>`;
             result += `<div>Description: ${res[index].description}</div>`;
             result += `<div>Submitted By: ${res[index].author}</div>`;
             result += `<div>Resolved By: ${res[index].resolver}</div>`;
@@ -148,8 +148,8 @@ function inputForm() {
           for (let index = 0; index < res.length; index++) {
             result += `<div>Reimbursement ID: ${res[index].reimId}</div>`;
             result += `<div>Amount: ${res[index].reimAmount}</div>`;
-            result += `<div>Submitted On: ${res[index].submit}</div>`;
-            result += `<div>Resolved At: ${res[index].resolve}</div>`;
+            result += `<div>Submitted Date: ${res[index].submit}</div>`;
+            result += `<div>Resolved Date: ${res[index].resolve}</div>`;
             result += `<div>Description: ${res[index].description}</div>`;
             result += `<div>Submitted By: ${res[index].author}</div>`;
             result += `<div>Resolved By: ${res[index].resolver}</div>`;
@@ -178,8 +178,8 @@ function inputForm() {
           for (let index = 0; index < res.length; index++) {
             result += `<div>Reimbursement ID: ${res[index].reimId}</div>`;
             result += `<div>Amount: ${res[index].reimAmount}</div>`;
-            result += `<div>Submitted On: ${res[index].submit}</div>`;
-            result += `<div>Resolved At: ${res[index].resolve}</div>`;
+            result += `<div>Submitted Date: ${res[index].submit}</div>`;
+            result += `<div>Resolved Date: ${res[index].resolve}</div>`;
             result += `<div>Description: ${res[index].description}</div>`;
             result += `<div>Submitted By: ${res[index].author}</div>`;
             result += `<div>Resolved By: ${res[index].resolver}</div>`;
