@@ -1,0 +1,77 @@
+html {
+    background-image: linear-gradient(45deg, rgb(31, 118, 231) 0%, rgb(82, 127, 224) 50%, rgb(23, 56, 148) 100%);
+    padding: 1em;
+    font-family: sans-serif;
+}
+
+body{
+    padding: 0;
+    width: 50em;
+    margin:auto;
+    background-color: rgb(106, 160, 192);
+    border: 2px solid rgb(25, 88, 206);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    background-image: linear-gradient(45deg, rgb(12, 43, 110) 0%, rgb(106, 182, 233) 100%);
+    color: white;
+    padding: 3.5em;
+    text-align: center;
+}
+
+header h1{
+    font-size: 3em;
+}
+
+nav{
+    background-color:rgb(73, 160, 163);
+    border-bottom: 2px solid rgb(3, 28, 48); 
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul li {
+    float: left;
+}
+  
+ul li:last-child{
+    float: right;
+}
+
+ul li a {
+    padding: 1em 2em;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: white; 
+}
+
+li a:hover {
+    background-color:black;
+}
+
+footer{
+    background-color: gray;
+    height:4em;
+    text-align: center;  
+    margin-top: auto;
+}
+
+footer div{
+    margin: 0;
+    padding: 1.5em;
+    color:white;
+}
+
+main {
+    padding: 1.5em;
+}
+

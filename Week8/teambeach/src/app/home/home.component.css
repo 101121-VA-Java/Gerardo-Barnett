@@ -1,0 +1,32 @@
+body{
+    padding: 0;
+    width: 50em;
+    margin:auto;
+    background-color: rgb(106, 160, 192);
+    border: 2px solid rgb(25, 88, 206);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    padding: 1.5em;
+}
+
+p{
+    text-indent: 1em;
+}
+figure{
+    margin-left: auto;
+    margin-right: auto;
+    width: 85%;
+}
+figcaption{
+    font-size: small;
+    padding: .5em 0 0 0;
+}
+
+#opeth{
+    border: 2px solid black;
+    border-radius: 10%;
+}
