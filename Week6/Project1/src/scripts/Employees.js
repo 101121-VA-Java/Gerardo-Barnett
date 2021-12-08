@@ -6,7 +6,7 @@ if (!token) {
 }
 
 function addReimbursement() {
-    console.log("Add Reimbursement!");
+    console.log("Submit reimbursement");
     let reimAmount = document.getElementById("amount").value;
     let description = document.getElementById("description").value;
     let author = sessionStorage.token.split(":")[0];

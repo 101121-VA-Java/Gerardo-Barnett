@@ -54,13 +54,13 @@ function inputForm() {
               <button
                 type="button"
                 class="btn btn-success"
-                onclick="changeReimbursement(${res[index].id}, 2)"
+                onclick="changeReimbursement(${res[index].reimId}, 3)"
               >
                 Approve
               </button>
               
             </div><br>`;
-            result += `<div><button type="button" class="btn btn-danger" onclick="changeReimbursement(${res[index].id}, 3)">Deny</button></div><br>`;
+            result += `<div><button type="button" class="btn btn-danger" onclick="changeReimbursement(${res[index].reimId}, 4)">Deny</button></div><br>`;
           }
           document.getElementById("manbox").innerHTML = result;
         })
@@ -102,6 +102,7 @@ function inputForm() {
         console.log("An error occurred");
       }
     };
+
     xhr.setRequestHeader("Authorization", sessionStorage.token);
     xhr.send(JSON.stringify(payload));
   }
